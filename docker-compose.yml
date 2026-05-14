@@ -1,0 +1,221 @@
+version: '3.9'
+
+# ═══════════════════════════════════════════════════════════════
+# TalentOS — Docker Compose
+# Comando para levantar todo: docker-compose up --build
+# ═══════════════════════════════════════════════════════════════
+
+services:
+
+  # ── FRONTEND ──────────────────────────────────────────────────
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: talentos-frontend
+    ports:
+      - "${FRONTEND_PORT:-5173}:80"
+    depends_on:
+      - api-gateway
+    networks:
+      - talentos-net
+    restart: unless-stopped
+
+  # ── API GATEWAY ───────────────────────────────────────────────
+  api-gateway:
+    build:
+      context: ./services/api-gateway
+      dockerfile: Dockerfile
+    container_name: talentos-gateway
+    ports:
+      - "${GATEWAY_PORT:-3000}:3000"
+    env_file: .env
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+    depends_on:
+      - auth-service
+      - employee-service
+      - payroll-service
+      - training-service
+    networks:
+      - talentos-net
+    restart: unless-stopped
+
+  # ── AUTH SERVICE ──────────────────────────────────────────────
+  auth-service:
+    build:
+      context: ./services/auth-service
+      dockerfile: Dockerfile
+    container_name: talentos-auth
+    ports:
+      - "${AUTH_PORT:-3001}:3001"
+    env_file: .env
+    environment:
+      - NODE_ENV=development
+      - PORT=3001
+    depends_on:
+      auth-db:
+        condition: service_healthy
+    networks:
+      - talentos-net
+    restart: unless-stopped
+
+  # ── EMPLOYEE SERVICE ──────────────────────────────────────────
+  employee-service:
+    build:
+      context: ./services/employee-service
+      dockerfile: Dockerfile
+    container_name: talentos-employee
+    ports:
+      - "${EMPLOYEE_PORT:-8080}:8080"
+    env_file: .env
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://${EMPLOYEE_DB_HOST}:${EMPLOYEE_DB_PORT}/${EMPLOYEE_DB_NAME}
+      - SPRING_DATASOURCE_USERNAME=${EMPLOYEE_DB_USER}
+      - SPRING_DATASOURCE_PASSWORD=${EMPLOYEE_DB_PASSWORD}
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - JWT_SECRET=${JWT_SECRET}
+    volumes:
+      - archivos-hv:/app/uploads
+    depends_on:
+      employee-db:
+        condition: service_healthy
+    networks:
+      - talentos-net
+    restart: unless-stopped
+
+  # ── PAYROLL SERVICE ───────────────────────────────────────────
+  payroll-service:
+    build:
+      context: ./services/payroll-service
+      dockerfile: Dockerfile
+    container_name: talentos-payroll
+    ports:
+      - "${PAYROLL_PORT:-9000}:9000"
+    env_file: .env
+    volumes:
+      - archivos-hv:/var/www/html/uploads
+    depends_on:
+      payroll-db:
+        condition: service_healthy
+    networks:
+      - talentos-net
+    restart: unless-stopped
+
+  # ── TRAINING SERVICE ──────────────────────────────────────────
+  training-service:
+    build:
+      context: ./services/training-service
+      dockerfile: Dockerfile
+    container_name: talentos-training
+    ports:
+      - "${TRAINING_PORT:-3002}:3002"
+    env_file: .env
+    environment:
+      - NODE_ENV=development
+      - PORT=3002
+    depends_on:
+      training-db:
+        condition: service_healthy
+    networks:
+      - talentos-net
+    restart: unless-stopped
+
+  # ══ BASES DE DATOS ════════════════════════════════════════════
+
+  auth-db:
+    image: postgres:16-alpine
+    container_name: talentos-auth-db
+    environment:
+      POSTGRES_DB: ${AUTH_DB_NAME:-talentos_auth}
+      POSTGRES_USER: ${AUTH_DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${AUTH_DB_PASSWORD}
+    volumes:
+      - auth-db-data:/var/lib/postgresql/data
+      - ./db-scripts/auth-db.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${AUTH_DB_USER:-postgres}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - talentos-net
+    restart: unless-stopped
+
+  employee-db:
+    image: postgres:16-alpine
+    container_name: talentos-employee-db
+    environment:
+      POSTGRES_DB: ${EMPLOYEE_DB_NAME:-talentos_employee}
+      POSTGRES_USER: ${EMPLOYEE_DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${EMPLOYEE_DB_PASSWORD}
+    volumes:
+      - employee-db-data:/var/lib/postgresql/data
+      - ./db-scripts/employee-db.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${EMPLOYEE_DB_USER:-postgres}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - talentos-net
+    restart: unless-stopped
+
+  payroll-db:
+    image: mysql:8
+    container_name: talentos-payroll-db
+    environment:
+      MYSQL_DATABASE: ${PAYROLL_DB_NAME:-talentos_payroll}
+      MYSQL_USER: ${PAYROLL_DB_USER:-payroll_user}
+      MYSQL_PASSWORD: ${PAYROLL_DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${PAYROLL_DB_ROOT_PASSWORD}
+    volumes:
+      - payroll-db-data:/var/lib/mysql
+      - ./db-scripts/payroll-db.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${PAYROLL_DB_ROOT_PASSWORD}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - talentos-net
+    restart: unless-stopped
+
+  training-db:
+    image: postgres:16-alpine
+    container_name: talentos-training-db
+    environment:
+      POSTGRES_DB: ${TRAINING_DB_NAME:-talentos_training}
+      POSTGRES_USER: ${TRAINING_DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${TRAINING_DB_PASSWORD}
+    volumes:
+      - training-db-data:/var/lib/postgresql/data
+      - ./db-scripts/training-db.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${TRAINING_DB_USER:-postgres}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - talentos-net
+    restart: unless-stopped
+
+# ══ VOLÚMENES ═════════════════════════════════════════════════
+volumes:
+  auth-db-data:
+    name: talentos-auth-db-data
+  employee-db-data:
+    name: talentos-employee-db-data
+  payroll-db-data:
+    name: talentos-payroll-db-data
+  training-db-data:
+    name: talentos-training-db-data
+  archivos-hv:
+    name: talentos-archivos-hv
+
+# ══ RED ═══════════════════════════════════════════════════════
+networks:
+  talentos-net:
+    name: talentos-net
+    driver: bridge
