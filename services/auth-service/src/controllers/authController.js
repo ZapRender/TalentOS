@@ -120,12 +120,16 @@ const me = async (req, res) => {
 
 const verify = (req, res) => {
   try {
-    const { token } = req.body;
-    if (!token) {
-      return res.status(400).json({ success: false, error: 'Token requerido', code: 400 });
+    const header = req.headers.authorization;
+    if (!header || !header.startsWith('Bearer ')) {
+      return res.status(401).json({ success: false, error: 'Token requerido', code: 401 });
     }
-    const payload = jwtService.verify(token);
-    res.json({ success: true, data: payload, message: 'Token válido' });
+    const { userId, email, rol, empleadoId } = jwtService.verify(header.slice(7));
+    res.json({
+      success: true,
+      data:    { valid: true, userId, email, rol, empleadoId },
+      message: 'Token válido',
+    });
   } catch {
     res.status(401).json({ success: false, error: 'Token inválido o expirado', code: 401 });
   }
