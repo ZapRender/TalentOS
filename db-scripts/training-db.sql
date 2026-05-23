@@ -6,7 +6,7 @@
 -- Planes de inducción
 CREATE TABLE IF NOT EXISTS planes_induccion (
   id                   SERIAL PRIMARY KEY,
-  empleado_id          INTEGER      NOT NULL COMMENT 'ref Employee Service',
+  empleado_id          INTEGER      NOT NULL, -- ref Employee Service
   fecha_inicio         DATE         NOT NULL,
   fecha_fin            DATE         NOT NULL,
   -- 3 a 5 días laborales después de fecha_inicio
