@@ -60,7 +60,7 @@ ON CONFLICT (nombre) DO NOTHING;
 -- Hash bcrypt de 'Admin123!'
 INSERT INTO usuarios (nombre, apellidos, email, password_hash, activo) VALUES
   ('Admin', 'TalentOS', 'admin@talentos.com',
-   '$2b$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', true)
+   '$2b$10$m5cJn0xprg6vrqVQGGamXODHrbrDp7TQmv3c1PsYeJKW81CJyno4u', true)
 ON CONFLICT (email) DO NOTHING;
 
 -- Asignar rol ADMIN_RRHH al usuario inicial

@@ -33,11 +33,11 @@ services:
     environment:
       - NODE_ENV=development
       - PORT=3000
-    depends_on:
-      - auth-service
-      - employee-service
-      - payroll-service
-      - training-service
+    #depends_on:
+     # - auth-service
+      #- employee-service
+      #- payroll-service
+      #- training-service
     networks:
       - talentos-net
     restart: unless-stopped
