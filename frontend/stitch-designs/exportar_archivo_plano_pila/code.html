@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SGRH - Exportar Archivo Plano PILA</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container-high": "#e8e8e8",
+                        "secondary-fixed-dim": "#b8c8de",
+                        "tertiary-fixed": "#ffddb5",
+                        "on-primary-container": "#95bff1",
+                        "on-primary": "#ffffff",
+                        "primary": "#00375e",
+                        "on-primary-fixed": "#001d35",
+                        "secondary": "#516072",
+                        "on-surface": "#1a1c1c",
+                        "on-error-container": "#93000a",
+                        "error": "#ba1a1a",
+                        "inverse-primary": "#a0cafc",
+                        "surface-tint": "#35618d",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed": "#2a1800",
+                        "on-secondary-fixed-variant": "#39485a",
+                        "error-container": "#ffdad6",
+                        "on-surface-variant": "#42474f",
+                        "primary-fixed": "#d1e4ff",
+                        "outline-variant": "#c2c7d0",
+                        "on-secondary-fixed": "#0d1d2d",
+                        "background": "#f9f9f9",
+                        "secondary-container": "#d1e1f7",
+                        "surface-container-highest": "#e2e2e2",
+                        "inverse-on-surface": "#f1f1f1",
+                        "surface-container": "#eeeeee",
+                        "outline": "#72777f",
+                        "on-tertiary-container": "#e9b268",
+                        "on-error": "#ffffff",
+                        "tertiary": "#4c2e00",
+                        "on-primary-fixed-variant": "#184974",
+                        "secondary-fixed": "#d4e4fa",
+                        "surface": "#f9f9f9",
+                        "primary-container": "#1f4e79",
+                        "on-background": "#1a1c1c",
+                        "tertiary-container": "#6a4300",
+                        "tertiary-fixed-dim": "#f5bc72",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#643f00",
+                        "surface-dim": "#dadada",
+                        "surface-container-low": "#f3f3f3",
+                        "surface-bright": "#f9f9f9",
+                        "primary-fixed-dim": "#a0cafc",
+                        "inverse-surface": "#2f3131",
+                        "surface-variant": "#e2e2e2",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-container": "#556477"
+                    },
+                    fontFamily: {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"],
+                        "mono": ["JetBrains Mono"]
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-background overflow-hidden">
+<!-- Sidebar / SideNavBar -->
+<aside class="fixed left-0 top-0 h-full w-[220px] bg-[#1F4E79] dark:bg-[#0D2A44] flex flex-col py-6 shadow-[0_12px_32px_-4px_rgba(0,55,94,0.08)] z-50">
+<div class="px-6 mb-8">
+<h1 class="text-2xl font-bold text-white tracking-tight">SGRH</h1>
+<p class="text-[10px] text-white/50 tracking-[0.2em] uppercase font-medium">Gestión de Recursos</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-white/70 hover:text-white hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-['Inter'] text-sm tracking-wide">Inicio</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-white/70 hover:text-white hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+<span class="font-['Inter'] text-sm tracking-wide">Colaboradores</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-white/70 hover:text-white hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-['Inter'] text-sm tracking-wide">Nómina</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-white border-l-4 border-[#A0CAFC] bg-white/10" href="#">
+<span class="material-symbols-outlined" data-icon="security">security</span>
+<span class="font-['Inter'] text-sm tracking-wide">Seguridad Social</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-white/70 hover:text-white hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-['Inter'] text-sm tracking-wide">Reportes</span>
+</a>
+</nav>
+<div class="mt-auto px-4 space-y-1">
+<button class="w-full mb-6 py-3 px-4 bg-white/10 hover:bg-white/20 text-white text-xs font-semibold rounded-lg transition-all active:scale-[0.98]">
+                Nueva Liquidación
+            </button>
+<a class="flex items-center gap-3 px-4 py-2 text-white/70 hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-['Inter'] text-sm">Configuración</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-white/70 hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-['Inter'] text-sm">Cerrar Sesión</span>
+</a>
+</div>
+</aside>
+<!-- TopAppBar -->
+<header class="sticky top-0 z-40 w-full ml-[220px] bg-white/70 dark:bg-[#1A1C1C]/70 backdrop-blur-md flex justify-between items-center h-16 px-8 border-b border-gray-200/30 dark:border-gray-800/30">
+<div class="flex items-center gap-8">
+<span class="text-lg font-semibold text-[#1F4E79] dark:text-white">Aportes — Seguridad Social</span>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-gray-500 dark:text-gray-400 hover:text-[#1F4E79] font-['Inter'] text-sm font-medium transition-colors duration-200" href="#">Periodos</a>
+<a class="text-[#1F4E79] dark:text-[#A0CAFC] border-b-2 border-[#1F4E79] pb-1 font-['Inter'] text-sm font-medium" href="#">Planillas</a>
+<a class="text-gray-500 dark:text-gray-400 hover:text-[#1F4E79] font-['Inter'] text-sm font-medium transition-colors duration-200" href="#">Histórico</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:bg-gray-50 p-2 rounded-full transition-all" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border-2 border-white"></span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:bg-gray-50 p-2 rounded-full transition-all" data-icon="help_outline">help_outline</span>
+<div class="h-8 w-8 rounded-full bg-primary-container overflow-hidden">
+<img alt="Avatar de administrador" data-alt="close-up professional portrait of a business administrator in a modern office setting, soft professional lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnhUAN5Sc-MR9Af4wQPPpxMmj6cjhFyhO2832fAHTdiA8vJqA4fVurnStWaWYLRAWAqQId-qP9hVzIOD9Ww5X_lrR47cm2R53zvfUZY8okrYg-u3lqel_KFVusHQ2CtjXWD6QXR27bhhiZuGQOeihlC75CsSLCA8JtM6otE09_IEd6yXf0zj5IEI-MyyUztY-83NmE9GeRba8hQ7FDPUGPjubQI0zcMjPbLXCYOqhHIdy2O0OuRRII_XAnPCclFGvOFW9BOmD6gmpK"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas (PILA Screen Background) -->
+<main class="ml-[220px] p-10 min-h-screen">
+<div class="max-w-6xl mx-auto opacity-40 pointer-events-none">
+<div class="flex justify-between items-end mb-10">
+<div>
+<h2 class="text-3xl font-bold text-on-surface mb-2">Planilla Integrada (PILA)</h2>
+<p class="text-on-surface-variant">Gestión de aportes y autoliquidación mensual.</p>
+</div>
+<div class="flex gap-3">
+<button class="px-6 py-2.5 rounded-lg border border-outline-variant text-primary font-medium">Validar Datos</button>
+<button class="px-6 py-2.5 rounded-lg bg-primary text-white font-medium shadow-lg">Generar Planilla</button>
+</div>
+</div>
+<!-- Dashboard Grid -->
+<div class="grid grid-cols-12 gap-6">
+<!-- Summary Card -->
+<div class="col-span-8 bg-surface-container-lowest rounded-xl p-8 shadow-sm">
+<div class="flex justify-between items-center mb-8">
+<h3 class="text-lg font-semibold text-on-surface-variant">Resumen de Liquidación</h3>
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container rounded-full text-xs font-bold uppercase tracking-wider">Borrador</span>
+</div>
+<div class="space-y-6">
+<div class="flex justify-between items-center py-4 bg-surface-container-low px-6 rounded-lg">
+<span class="text-on-surface-variant font-medium">Total Cotizantes</span>
+<span class="text-xl font-bold">124</span>
+</div>
+<div class="flex justify-between items-center py-4 bg-surface-container-low px-6 rounded-lg">
+<span class="text-on-surface-variant font-medium">Salud (EPS)</span>
+<span class="text-xl font-bold">$12,450,000</span>
+</div>
+<div class="flex justify-between items-center py-4 bg-surface-container-low px-6 rounded-lg">
+<span class="text-on-surface-variant font-medium">Pensión (AFP)</span>
+<span class="text-xl font-bold">$16,820,000</span>
+</div>
+</div>
+</div>
+<!-- Stats Side Column -->
+<div class="col-span-4 space-y-6">
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-sm border-l-4 border-inverse-primary">
+<p class="text-sm text-on-surface-variant font-medium mb-1">Periodo Actual</p>
+<p class="text-2xl font-bold text-primary">Enero 2025</p>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-sm border-l-4 border-tertiary">
+<p class="text-sm text-on-surface-variant font-medium mb-1">Fecha Límite</p>
+<p class="text-2xl font-bold text-tertiary">08 Feb 2025</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Modal Overlay -->
+<div class="fixed inset-0 z-[60] flex items-center justify-center p-4">
+<!-- Backdrop -->
+<div class="absolute inset-0 bg-primary/40 backdrop-blur-sm"></div>
+<!-- Modal Dialog -->
+<div class="relative bg-surface-container-lowest w-full max-w-2xl rounded-2xl shadow-[0_12px_32px_-4px_rgba(0,55,94,0.2)] overflow-hidden flex flex-col">
+<!-- Modal Header -->
+<div class="px-8 py-6 border-b border-outline-variant/20 flex justify-between items-center">
+<h3 class="text-xl font-bold text-primary">Exportar Archivo Plano PILA</h3>
+<button class="p-2 hover:bg-surface-container-low rounded-full transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+<!-- Modal Content -->
+<div class="p-8 space-y-8">
+<!-- Info Summary -->
+<div class="grid grid-cols-2 gap-8">
+<div class="bg-surface-container-low p-4 rounded-xl">
+<p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-widest mb-1">Periodo a exportar</p>
+<p class="text-lg font-semibold text-primary">Enero 2025</p>
+</div>
+<div class="bg-surface-container-low p-4 rounded-xl">
+<p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-widest mb-1">Total Liquidado</p>
+<p class="text-lg font-semibold text-primary">$34.560.800 COP</p>
+</div>
+</div>
+<!-- Structure Selection -->
+<div>
+<label class="text-sm font-bold text-on-surface mb-4 block">Estructura del Archivo</label>
+<div class="flex items-center gap-3 p-4 border-2 border-primary-fixed-dim bg-primary/5 rounded-xl cursor-pointer">
+<div class="w-5 h-5 rounded-full border-4 border-primary bg-white flex items-center justify-center">
+<div class="w-1.5 h-1.5 rounded-full bg-primary"></div>
+</div>
+<div>
+<p class="text-sm font-semibold text-primary">Resolución 2388 de 2016</p>
+<p class="text-xs text-on-surface-variant">Estándar oficial vigente para la autoliquidación PILA.</p>
+</div>
+</div>
+</div>
+<!-- Code Preview Block -->
+<div class="space-y-2">
+<div class="flex justify-between items-center">
+<label class="text-sm font-bold text-on-surface">Vista Previa (Primeras 3 líneas)</label>
+<span class="text-[10px] text-on-surface-variant font-medium">FORMATO .TXT</span>
+</div>
+<div class="bg-surface-container-high p-4 rounded-lg font-mono text-[11px] text-on-surface-variant leading-relaxed overflow-hidden border border-outline-variant/30">
+<div class="opacity-80">01202501018003456780001000000000000011111111111111110000000000000000000</div>
+<div class="opacity-80">020000000110101800345678018003456780512345678900001HERNANDEZ JUAN CARLOS</div>
+<div class="opacity-80">020000000210101800345678018003456780598765432100002MARTINEZ MARIA FERNANDA</div>
+</div>
+</div>
+<!-- Note -->
+<div class="flex gap-3 items-start bg-tertiary-fixed/30 p-4 rounded-lg">
+<span class="material-symbols-outlined text-on-tertiary-fixed-variant text-lg" data-icon="info">info</span>
+<p class="text-sm text-on-tertiary-fixed-variant">
+                        El archivo puede cargarse directamente en <span class="font-bold underline cursor-pointer">www.aportesenlinea.com</span> sin necesidad de ediciones adicionales.
+                    </p>
+</div>
+</div>
+<!-- Modal Footer -->
+<div class="px-8 py-6 bg-surface-container-low flex justify-end items-center gap-4">
+<button class="px-6 py-2.5 text-sm font-semibold text-primary hover:bg-primary/5 rounded-lg transition-colors">
+                    Cancelar
+                </button>
+<button class="flex items-center gap-2 px-8 py-2.5 bg-gradient-to-br from-primary to-primary-container text-white text-sm font-bold rounded-lg shadow-md hover:shadow-lg active:scale-95 transition-all">
+<span class="material-symbols-outlined text-lg" data-icon="download">download</span>
+                    Descargar archivo .txt
+                </button>
+</div>
+</div>
+</div>
+</body></html>

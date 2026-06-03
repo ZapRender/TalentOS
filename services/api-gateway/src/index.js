@@ -1,14 +1,24 @@
 require('dotenv').config();
 
-const express         = require('express');
+const express          = require('express');
+const cors             = require('cors');
 const { authenticate } = require('./middleware/authMiddleware');
-const errorHandler    = require('./middleware/errorHandler');
-const authProxy       = require('./routes/authProxy');
-const employeeProxy   = require('./routes/employeeProxy');
-const payrollProxy    = require('./routes/payrollProxy');
-const trainingProxy   = require('./routes/trainingProxy');
+const errorHandler     = require('./middleware/errorHandler');
+const authProxy        = require('./routes/authProxy');
+const employeeProxy    = require('./routes/employeeProxy');
+const payrollProxy     = require('./routes/payrollProxy');
+const trainingProxy    = require('./routes/trainingProxy');
 
 const app = express();
+
+// ── CORS — antes de authenticate; el paquete cors responde al OPTIONS preflight
+// con 204 sin pasar por authenticate, lo que resuelve el 401 en /api/auth/login
+app.use(cors({
+  origin:         process.env.CORS_ORIGIN || 'http://localhost:5173',
+  credentials:    true,
+  methods:        ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+}));
 
 // ── Gateway health — always public, registered before auth middleware ─────────
 app.get('/api/gateway/health', (req, res) => {

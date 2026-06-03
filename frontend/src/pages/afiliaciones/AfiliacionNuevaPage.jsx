@@ -1,19 +1,48 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Button from '../../components/ui/Button'
 import Input from '../../components/ui/Input'
+import { payrollService } from '../../services/payrollService'
+import { employeeService } from '../../services/employeeService'
 
 export default function AfiliacionNuevaPage() {
   const navigate = useNavigate()
-  const [form, setForm] = useState({ empleado: '', eps: '', arl: '', pension: '', cajaComp: '', fechaInicio: '' })
+  const [empleados, setEmpleados] = useState([])
+  const [saving, setSaving] = useState(false)
+  const [error, setError] = useState('')
+  const [success, setSuccess] = useState('')
+  const [form, setForm] = useState({
+    empleado_id: '',
+    tipo_entidad: 'EPS',
+    nombre_entidad: '',
+    fecha_afiliacion: '',
+    region: '',
+  })
   const set = (k) => (e) => setForm({ ...form, [k]: e.target.value })
 
-  const selects = [
-    { k: 'eps', label: 'EPS', opts: ['Sura', 'Sanitas', 'Nueva EPS', 'Compensar', 'Famisanar'] },
-    { k: 'arl', label: 'ARL', opts: ['Positiva', 'ARL SURA', 'Colmena', 'Bolivar'] },
-    { k: 'pension', label: 'Fondo de Pensiones', opts: ['Protección', 'Colpensiones', 'Old Mutual', 'Colfondos', 'Porvenir'] },
-    { k: 'cajaComp', label: 'Caja de Compensación', opts: ['Compensar', 'Cafam', 'Colsubsidio', 'Comfama', 'Comfenalco'] },
-  ]
+  useEffect(() => {
+    employeeService.list().then(setEmpleados).catch(() => {})
+  }, [])
+
+  const handleSubmit = async () => {
+    if (!form.empleado_id || !form.nombre_entidad || !form.fecha_afiliacion) {
+      setError('Complete los campos requeridos: empleado, entidad y fecha.')
+      return
+    }
+    setSaving(true)
+    setError('')
+    try {
+      await payrollService.afiliaciones.create(form)
+      setSuccess('Afiliación registrada exitosamente.')
+      setTimeout(() => navigate('/afiliaciones'), 1500)
+    } catch (err) {
+      setError(err?.response?.data?.message || 'Error al registrar la afiliación.')
+    } finally {
+      setSaving(false)
+    }
+  }
+
+  const tiposEntidad = ['EPS', 'ARL', 'PENSION', 'CAJA_COMPENSACION']
 
   return (
     <div className="max-w-2xl space-y-8">
@@ -27,31 +56,44 @@ export default function AfiliacionNuevaPage() {
         </div>
       </div>
 
+      {error && (
+        <div className="flex items-center gap-3 p-4 bg-error-container rounded-lg">
+          <span className="material-symbols-outlined text-error">error</span>
+          <p className="text-sm text-on-error-container font-medium">{error}</p>
+        </div>
+      )}
+
+      {success && (
+        <div className="flex items-center gap-3 p-4 bg-emerald-50 rounded-lg border border-emerald-200">
+          <span className="material-symbols-outlined text-emerald-600">check_circle</span>
+          <p className="text-sm text-emerald-800 font-medium">{success}</p>
+        </div>
+      )}
+
       <div className="bg-surface-container-lowest rounded-xl p-8 border border-outline-variant/10 shadow-card space-y-5">
         <div className="space-y-2">
           <label className="block text-[11px] font-bold uppercase tracking-widest text-on-surface-variant ml-1">Empleado</label>
-          <select value={form.empleado} onChange={set('empleado')} className="w-full h-12 px-4 bg-surface-container-low ghost-border rounded-lg text-on-surface text-sm focus:outline-none focus:ring-2 focus:ring-primary-fixed-dim transition-all">
+          <select value={form.empleado_id} onChange={set('empleado_id')} className="w-full h-12 px-4 bg-surface-container-low ghost-border rounded-lg text-on-surface text-sm focus:outline-none focus:ring-2 focus:ring-primary-fixed-dim transition-all">
             <option value="">Seleccionar empleado...</option>
-            <option>Juliana Pérez Castro</option>
-            <option>Carlos Andrés Duarte</option>
-            <option>Beatriz Elena Salas</option>
+            {empleados.map((e) => (
+              <option key={e.id} value={e.id}>{e.nombre || `${e.primer_nombre} ${e.primer_apellido}`}</option>
+            ))}
           </select>
         </div>
-        {selects.map(({ k, label, opts }) => (
-          <div key={k} className="space-y-2">
-            <label className="block text-[11px] font-bold uppercase tracking-widest text-on-surface-variant ml-1">{label}</label>
-            <select value={form[k]} onChange={set(k)} className="w-full h-12 px-4 bg-surface-container-low ghost-border rounded-lg text-on-surface text-sm focus:outline-none focus:ring-2 focus:ring-primary-fixed-dim transition-all">
-              <option value="">Seleccionar {label}...</option>
-              {opts.map((o) => <option key={o}>{o}</option>)}
-            </select>
-          </div>
-        ))}
-        <Input label="Fecha de Inicio" type="date" value={form.fechaInicio} onChange={set('fechaInicio')} />
+        <div className="space-y-2">
+          <label className="block text-[11px] font-bold uppercase tracking-widest text-on-surface-variant ml-1">Tipo de Entidad</label>
+          <select value={form.tipo_entidad} onChange={set('tipo_entidad')} className="w-full h-12 px-4 bg-surface-container-low ghost-border rounded-lg text-on-surface text-sm focus:outline-none focus:ring-2 focus:ring-primary-fixed-dim transition-all">
+            {tiposEntidad.map((t) => <option key={t} value={t}>{t.replace('_', ' ')}</option>)}
+          </select>
+        </div>
+        <Input label="Nombre de la Entidad" value={form.nombre_entidad} onChange={set('nombre_entidad')} placeholder="Ej. Sura, Positiva, Colpensiones..." />
+        <Input label="Fecha de Afiliación" type="date" value={form.fecha_afiliacion} onChange={set('fecha_afiliacion')} />
+        <Input label="Región" value={form.region} onChange={set('region')} placeholder="Ej. Bogotá, Medellín..." />
       </div>
 
       <div className="flex justify-between">
         <Button variant="secondary" onClick={() => navigate('/afiliaciones')}>Cancelar</Button>
-        <Button>Registrar Afiliación</Button>
+        <Button onClick={handleSubmit} disabled={saving}>{saving ? 'Registrando...' : 'Registrar Afiliación'}</Button>
       </div>
     </div>
   )

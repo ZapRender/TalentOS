@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-error": "#ffffff",
+              "primary-fixed-dim": "#a0cafc",
+              "outline": "#72777f",
+              "on-tertiary-fixed": "#2a1800",
+              "surface-container": "#eeeeee",
+              "background": "#f9f9f9",
+              "secondary-container": "#d1e1f7",
+              "inverse-on-surface": "#f1f1f1",
+              "on-error-container": "#93000a",
+              "surface-dim": "#dadada",
+              "surface-container-lowest": "#ffffff",
+              "surface-tint": "#35618d",
+              "on-secondary": "#ffffff",
+              "tertiary-fixed": "#ffddb5",
+              "surface-container-highest": "#e2e2e2",
+              "inverse-primary": "#a0cafc",
+              "secondary-fixed-dim": "#b8c8de",
+              "primary-container": "#1f4e79",
+              "on-surface-variant": "#42474f",
+              "surface-bright": "#f9f9f9",
+              "on-primary": "#ffffff",
+              "on-background": "#1a1c1c",
+              "error": "#ba1a1a",
+              "on-surface": "#1a1c1c",
+              "primary-fixed": "#d1e4ff",
+              "on-primary-container": "#95bff1",
+              "on-tertiary-container": "#e9b268",
+              "on-primary-fixed-variant": "#184974",
+              "surface-container-low": "#f3f3f3",
+              "on-tertiary-fixed-variant": "#643f00",
+              "surface-variant": "#e2e2e2",
+              "outline-variant": "#c2c7d0",
+              "tertiary": "#4c2e00",
+              "tertiary-container": "#6a4300",
+              "surface": "#f9f9f9",
+              "on-tertiary": "#ffffff",
+              "tertiary-fixed-dim": "#f5bc72",
+              "secondary": "#516072",
+              "on-secondary-container": "#556477",
+              "primary": "#00375e",
+              "on-secondary-fixed": "#0d1d2d",
+              "secondary-fixed": "#d4e4fa",
+              "inverse-surface": "#2f3131",
+              "on-secondary-fixed-variant": "#39485a",
+              "error-container": "#ffdad6",
+              "surface-container-high": "#e8e8e8",
+              "on-primary-fixed": "#001d35"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased flex">
+<!-- SideNavBar (Authority Source: JSON) -->
+<nav class="fixed left-0 top-0 h-screen w-[220px] z-50 bg-[#1F4E79] dark:bg-slate-900 shadow-xl dark:shadow-none flex flex-col py-8 overflow-y-auto font-['Inter'] antialiased tracking-tight text-sm font-medium">
+<div class="px-6 mb-10">
+<h1 class="text-2xl font-bold tracking-tighter text-white">SGRH</h1>
+<p class="text-white/60 text-[10px] uppercase tracking-[0.2em] font-bold">Recursos Humanos</p>
+</div>
+<div class="flex flex-col space-y-1">
+<a class="flex items-center px-6 py-3 space-x-3 text-white/70 hover:text-white transition-colors duration-200 hover:bg-white/10" href="#">
+<span class="material-symbols-outlined text-lg">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center px-6 py-3 space-x-3 text-white/70 hover:text-white transition-colors duration-200 hover:bg-white/10" href="#">
+<span class="material-symbols-outlined text-lg">groups</span>
+<span>Empleados</span>
+</a>
+<a class="flex items-center px-6 py-3 space-x-3 text-white/70 hover:text-white transition-colors duration-200 hover:bg-white/10" href="#">
+<span class="material-symbols-outlined text-lg">person_search</span>
+<span>Selección</span>
+</a>
+<a class="flex items-center px-6 py-3 space-x-3 text-white/70 hover:text-white transition-colors duration-200 hover:bg-white/10" href="#">
+<span class="material-symbols-outlined text-lg">assignment_ind</span>
+<span>Afiliaciones</span>
+</a>
+<a class="flex items-center px-6 py-3 space-x-3 text-white/70 hover:text-white transition-colors duration-200 hover:bg-white/10" href="#">
+<span class="material-symbols-outlined text-lg">payments</span>
+<span>Nómina</span>
+</a>
+<!-- Active Navigation State: Liquidaciones -->
+<a class="flex items-center px-6 py-3 space-x-3 relative text-white font-bold before:content-[''] before:absolute before:left-0 before:w-1 before:h-8 before:bg-[#a0cafc] before:rounded-r-full hover:bg-white/10 transition-all Active:translate-x-1 duration-150" href="#">
+<span class="material-symbols-outlined text-lg">account_balance_wallet</span>
+<span>Liquidaciones</span>
+</a>
+<a class="flex items-center px-6 py-3 space-x-3 text-white/70 hover:text-white transition-colors duration-200 hover:bg-white/10" href="#">
+<span class="material-symbols-outlined text-lg">receipt_long</span>
+<span>PILA</span>
+</a>
+<a class="flex items-center px-6 py-3 space-x-3 text-white/70 hover:text-white transition-colors duration-200 hover:bg-white/10" href="#">
+<span class="material-symbols-outlined text-lg">exit_to_app</span>
+<span>Retiro</span>
+</a>
+<a class="flex items-center px-6 py-3 space-x-3 text-white/70 hover:text-white transition-colors duration-200 hover:bg-white/10" href="#">
+<span class="material-symbols-outlined text-lg">verified</span>
+<span>Certificaciones</span>
+</a>
+<a class="flex items-center px-6 py-3 space-x-3 text-white/70 hover:text-white transition-colors duration-200 hover:bg-white/10" href="#">
+<span class="material-symbols-outlined text-lg">school</span>
+<span>Capacitación</span>
+</a>
+<a class="flex items-center px-6 py-3 space-x-3 text-white/70 hover:text-white transition-colors duration-200 hover:bg-white/10" href="#">
+<span class="material-symbols-outlined text-lg">query_stats</span>
+<span>Evaluación</span>
+</a>
+<div class="mt-auto pt-8">
+<a class="flex items-center px-6 py-3 space-x-3 text-white/70 hover:text-white transition-colors duration-200 hover:bg-white/10" href="#">
+<span class="material-symbols-outlined text-lg">settings</span>
+<span>Configuración</span>
+</a>
+</div>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col min-h-screen ml-[220px]">
+<!-- TopNavBar (Authority Source: JSON) -->
+<header class="sticky top-0 right-0 z-40 bg-white/70 dark:bg-slate-900/70 backdrop-blur-md flex justify-between items-center h-16 px-8 shadow-[0_12px_32px_-4px_rgba(0,55,94,0.08)] font-['Inter'] text-sm tracking-normal">
+<div class="flex items-center bg-slate-100 dark:bg-slate-800 rounded-lg px-3 py-1.5 w-72 transition-all focus-within:ring-2 focus-within:ring-[#a0cafc]/30">
+<span class="material-symbols-outlined text-slate-400 mr-2 text-xl">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-xs w-full" placeholder="Buscar empleado o radicado..." type="text"/>
+</div>
+<div class="flex items-center space-x-6">
+<div class="flex items-center space-x-4">
+<button class="text-slate-500 hover:text-[#1F4E79] transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute -top-1 -right-1 w-2 h-2 bg-error rounded-full border-2 border-white"></span>
+</button>
+<button class="text-slate-500 hover:text-[#1F4E79] transition-colors">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+</div>
+<div class="h-6 w-px bg-slate-200"></div>
+<div class="flex items-center space-x-3">
+<div class="text-right">
+<p class="font-bold text-[#1F4E79]">Admin</p>
+<p class="text-[10px] text-slate-400 uppercase tracking-wider">Recursos Humanos</p>
+</div>
+<img class="w-10 h-10 rounded-xl object-cover border border-slate-200" data-alt="Professional portrait of a middle-aged male executive in a blue business shirt with a clean minimalist office background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdAUJSF6VrgfPzTmV15vxm7Vi94ynkgh14KI0Kc4m08-uUlBXtjMHXzD0k1AoNKQ8dnIUpF-q1I8WzjWupbXj9JzFiSQCeKn1NA7JGBftYJcwMkCWsL1Jcx2HROcezoLVK1-mlybKX2MeAt28H-uM_BmWfdGGFlLvQ_eqdmX9Zpo0mQ8msHrjxz19X2ftQ_CxiU9N_knWqM_uNDMm4oGbYFmne-EhOZ4ntCo-8sIdpam18ExAKobP0nTII2VJALY74kg1qpDgr7Mv4"/>
+</div>
+</div>
+</header>
+<!-- Page Canvas -->
+<main class="p-10 max-w-6xl mx-auto w-full">
+<!-- Header Actions -->
+<div class="flex justify-between items-end mb-10">
+<div>
+<nav class="flex text-xs font-medium text-on-surface-variant mb-2 space-x-2">
+<span>Liquidaciones</span>
+<span>/</span>
+<span class="text-primary">Detalle de Liquidación (P-23)</span>
+</nav>
+<h2 class="text-3xl font-bold tracking-tight text-primary">Liquidación de Contrato</h2>
+</div>
+<div class="flex space-x-3">
+<button class="flex items-center px-5 py-2.5 rounded-lg border border-outline-variant text-primary font-semibold hover:bg-surface-container-low transition-colors text-sm">
+<span class="material-symbols-outlined mr-2 text-lg">download</span>
+                        Descargar PDF
+                    </button>
+<button class="flex items-center px-6 py-2.5 rounded-lg bg-gradient-to-br from-primary to-primary-container text-white font-semibold shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform text-sm">
+<span class="material-symbols-outlined mr-2 text-lg">send</span>
+                        Enviar a contador
+                    </button>
+</div>
+</div>
+<!-- The "Document" (Editorial Card) -->
+<div class="bg-surface-container-lowest shadow-[0_20px_50px_rgba(0,0,0,0.05)] rounded-xl overflow-hidden border border-white relative">
+<!-- Watermark / Decorative element -->
+<div class="absolute top-0 right-0 p-10 opacity-[0.03] pointer-events-none">
+<span class="material-symbols-outlined text-[12rem]">account_balance</span>
+</div>
+<!-- Document Header -->
+<div class="p-12 border-b border-surface-container-low flex justify-between items-start">
+<div>
+<div class="flex items-center space-x-3 mb-4">
+<div class="w-12 h-12 bg-primary-container rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-3xl">corporate_fare</span>
+</div>
+<div>
+<h3 class="font-black text-xl text-primary tracking-tight">SGRH</h3>
+<p class="text-xs text-on-surface-variant tracking-widest font-bold uppercase">Gestión de Recursos Humanos</p>
+</div>
+</div>
+<p class="text-sm text-on-surface-variant">Nit: 900.234.123-1<br/>Calle 100 # 7-33, Bogotá D.C.</p>
+</div>
+<div class="text-right">
+<div class="bg-primary/5 px-4 py-2 rounded-lg inline-block mb-2">
+<p class="text-xs font-bold text-primary uppercase tracking-widest">Radicado de Liquidación</p>
+<p class="text-xl font-mono font-bold text-primary">P-23-000154</p>
+</div>
+<p class="text-sm text-on-surface-variant">Fecha de emisión: 15/01/2025</p>
+</div>
+</div>
+<!-- Employee Data Section -->
+<div class="px-12 py-10 bg-surface-container-low/30 grid grid-cols-3 gap-8">
+<div class="space-y-1">
+<p class="text-[10px] uppercase font-bold text-on-surface-variant tracking-wider">Nombre del Colaborador</p>
+<p class="text-base font-bold text-on-surface">Andrés Felipe Restreppo</p>
+</div>
+<div class="space-y-1">
+<p class="text-[10px] uppercase font-bold text-on-surface-variant tracking-wider">Cédula de Ciudadanía</p>
+<p class="text-base font-medium text-on-surface">1.032.445.892</p>
+</div>
+<div class="space-y-1 text-right">
+<p class="text-[10px] uppercase font-bold text-on-surface-variant tracking-wider">Tipo de Contrato</p>
+<p class="text-base font-medium text-primary">Indefinido</p>
+</div>
+<div class="space-y-1">
+<p class="text-[10px] uppercase font-bold text-on-surface-variant tracking-wider">Fecha de Ingreso</p>
+<p class="text-base font-medium text-on-surface">15/03/2019</p>
+</div>
+<div class="space-y-1">
+<p class="text-[10px] uppercase font-bold text-on-surface-variant tracking-wider">Fecha de Terminación</p>
+<p class="text-base font-medium text-on-surface">15/01/2025</p>
+</div>
+<div class="space-y-1 text-right">
+<p class="text-[10px] uppercase font-bold text-on-surface-variant tracking-wider">Tiempo de Servicio</p>
+<p class="text-base font-medium text-on-surface">5 Años, 10 Meses</p>
+</div>
+</div>
+<!-- Settlement Table -->
+<div class="px-12 py-12">
+<h4 class="text-xs font-black uppercase tracking-[0.2em] text-primary mb-6 flex items-center">
+<span class="w-8 h-px bg-primary/20 mr-3"></span>
+                        Desglose de Conceptos
+                    </h4>
+<div class="space-y-0.5">
+<!-- Table Header -->
+<div class="grid grid-cols-12 py-3 px-4 bg-surface-container text-[10px] font-black uppercase tracking-widest text-on-surface-variant rounded-t-lg">
+<div class="col-span-6">Concepto Prestacional</div>
+<div class="col-span-2 text-center">Días / Base</div>
+<div class="col-span-4 text-right">Valor Liquidado</div>
+</div>
+<!-- Row 1 -->
+<div class="grid grid-cols-12 py-5 px-4 hover:bg-surface-container-low transition-colors border-b border-surface-container-low items-center">
+<div class="col-span-6">
+<p class="font-bold text-on-surface">Prima de Servicios</p>
+<p class="text-xs text-on-surface-variant">Segundo semestre proporcional (15 días)</p>
+</div>
+<div class="col-span-2 text-center font-mono text-xs">15 Días</div>
+<div class="col-span-4 text-right font-bold text-on-surface">$ 1.850.000</div>
+</div>
+<!-- Row 2 -->
+<div class="grid grid-cols-12 py-5 px-4 bg-surface-container-low/40 hover:bg-surface-container-low transition-colors border-b border-surface-container-low items-center">
+<div class="col-span-6">
+<p class="font-bold text-on-surface">Cesantías</p>
+<p class="text-xs text-on-surface-variant">Causadas periodo 2024 - 2025</p>
+</div>
+<div class="col-span-2 text-center font-mono text-xs">360 Días</div>
+<div class="col-span-4 text-right font-bold text-on-surface">$ 4.200.000</div>
+</div>
+<!-- Row 3 -->
+<div class="grid grid-cols-12 py-5 px-4 hover:bg-surface-container-low transition-colors border-b border-surface-container-low items-center">
+<div class="col-span-6">
+<p class="font-bold text-on-surface">Intereses a las Cesantías</p>
+<p class="text-xs text-on-surface-variant">12% anual sobre saldo de cesantías</p>
+</div>
+<div class="col-span-2 text-center font-mono text-xs">12.0%</div>
+<div class="col-span-4 text-right font-bold text-on-surface">$ 504.000</div>
+</div>
+<!-- Row 4 -->
+<div class="grid grid-cols-12 py-5 px-4 bg-surface-container-low/40 hover:bg-surface-container-low transition-colors border-b border-surface-container-low items-center">
+<div class="col-span-6">
+<p class="font-bold text-on-surface">Vacaciones Compensadas</p>
+<p class="text-xs text-on-surface-variant">24 días pendientes por disfrutar</p>
+</div>
+<div class="col-span-2 text-center font-mono text-xs">24 Días</div>
+<div class="col-span-4 text-right font-bold text-on-surface">$ 3.120.000</div>
+</div>
+<!-- Row 5 (Indemnity or Bonus) -->
+<div class="grid grid-cols-12 py-5 px-4 hover:bg-surface-container-low transition-colors border-b border-surface-container-low items-center">
+<div class="col-span-6">
+<p class="font-bold text-on-surface">Bonificación por Retiro</p>
+<p class="text-xs text-on-surface-variant">Acuerdo mutuo de terminación</p>
+</div>
+<div class="col-span-2 text-center font-mono text-xs">-</div>
+<div class="col-span-4 text-right font-bold text-on-surface">$ 4.521.000</div>
+</div>
+</div>
+<!-- Total Section -->
+<div class="mt-12 flex justify-end">
+<div class="w-full max-w-sm">
+<div class="flex justify-between items-center py-2 px-4 border-t-2 border-primary">
+<span class="text-xs font-black uppercase tracking-widest text-on-surface-variant">Gran Total a Pagar</span>
+<span class="text-3xl font-black text-primary">$ 14.195.000</span>
+</div>
+<p class="text-[10px] text-right text-on-surface-variant mt-2 italic">Valor en letras: Catorce millones ciento noventa y cinco mil pesos M/CTE.</p>
+</div>
+</div>
+</div>
+<!-- Signatures Footer -->
+<div class="px-12 py-16 grid grid-cols-2 gap-24">
+<div class="text-center">
+<div class="h-24 flex items-end justify-center mb-4">
+<!-- Placeholder for a real signature image if needed -->
+<div class="w-48 h-px bg-slate-300"></div>
+</div>
+<p class="text-sm font-bold text-on-surface">Analista de RRHH</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-widest">SGRH - Departamento Nómina</p>
+</div>
+<div class="text-center">
+<div class="h-24 flex items-end justify-center mb-4">
+<div class="w-48 h-px bg-slate-300"></div>
+</div>
+<p class="text-sm font-bold text-on-surface">Contador</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-widest">Revisión y Aprobación Financiera</p>
+</div>
+</div>
+<!-- Footer Bottom Bar -->
+<div class="bg-primary h-1.5 w-full"></div>
+</div>
+<!-- Contextual Note -->
+<div class="mt-10 flex items-start space-x-4 bg-tertiary-container/10 p-6 rounded-xl border border-tertiary-container/20">
+<span class="material-symbols-outlined text-tertiary text-2xl">info</span>
+<div>
+<h5 class="text-sm font-bold text-tertiary">Nota de Proceso</h5>
+<p class="text-xs text-on-surface-variant mt-1 leading-relaxed">
+                        Esta liquidación ha sido calculada automáticamente bajo las normativas vigentes del Código Sustantivo del Trabajo. 
+                        Cualquier modificación manual en los conceptos base requiere la aprobación del Director Financiero.
+                    </p>
+</div>
+</div>
+</main>
+</div>
+</body></html>

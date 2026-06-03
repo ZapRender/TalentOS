@@ -46,13 +46,15 @@ import PILAPage from '../pages/afiliaciones/PILAPage'
 // Capacitación y más
 import CapacitacionPage from '../pages/capacitacion/CapacitacionPage'
 import DetalleCapacitacionPage from '../pages/capacitacion/DetalleCapacitacionPage'
+import EvaluacionPage from '../pages/capacitacion/EvaluacionPage'
+import CompromisosPage from '../pages/capacitacion/CompromisosPage'
 import RetiroPage from '../pages/capacitacion/RetiroPage'
 import ImplementosPage from '../pages/capacitacion/ImplementosPage'
 import CartaNoRenovacionPage from '../pages/capacitacion/CartaNoRenovacionPage'
 import CertificacionPage from '../pages/capacitacion/CertificacionPage'
 
 function PrivateRoute({ children }) {
-  const { user, loading } = useAuth()
+  const { token, loading } = useAuth()
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
@@ -62,7 +64,7 @@ function PrivateRoute({ children }) {
       </div>
     )
   }
-  return user ? children : <Navigate to="/login" replace />
+  return token ? children : <Navigate to="/login" replace />
 }
 
 function AppLayout({ children }) {
@@ -116,6 +118,9 @@ export default function AppRouter() {
 
       <Route path="/capacitacion" element={<AppLayout><CapacitacionPage /></AppLayout>} />
       <Route path="/capacitacion/:id" element={<AppLayout><DetalleCapacitacionPage /></AppLayout>} />
+      <Route path="/capacitacion/evaluaciones/:empleadoId" element={<AppLayout><EvaluacionPage /></AppLayout>} />
+      <Route path="/capacitacion/evaluaciones" element={<AppLayout><EvaluacionPage /></AppLayout>} />
+      <Route path="/capacitacion/compromisos/:evalId" element={<AppLayout><CompromisosPage /></AppLayout>} />
 
       <Route path="/" element={<Navigate to="/dashboard" replace />} />
       <Route path="*" element={<Navigate to="/dashboard" replace />} />

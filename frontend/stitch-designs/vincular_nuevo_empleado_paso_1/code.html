@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary-fixed": "#d4e4fa",
+              "surface-variant": "#e2e2e2",
+              "on-surface-variant": "#42474f",
+              "on-primary": "#ffffff",
+              "surface-container-highest": "#e2e2e2",
+              "tertiary-container": "#6a4300",
+              "surface-bright": "#f9f9f9",
+              "background": "#f9f9f9",
+              "secondary-fixed-dim": "#b8c8de",
+              "secondary-container": "#d1e1f7",
+              "primary-fixed-dim": "#a0cafc",
+              "on-tertiary": "#ffffff",
+              "on-primary-fixed": "#001d35",
+              "on-secondary-fixed": "#0d1d2d",
+              "primary-fixed": "#d1e4ff",
+              "inverse-primary": "#a0cafc",
+              "on-background": "#1a1c1c",
+              "tertiary": "#4c2e00",
+              "surface-tint": "#35618d",
+              "on-secondary": "#ffffff",
+              "inverse-surface": "#2f3131",
+              "on-tertiary-container": "#e9b268",
+              "outline-variant": "#c2c7d0",
+              "error": "#ba1a1a",
+              "secondary": "#516072",
+              "surface-container-high": "#e8e8e8",
+              "surface": "#f9f9f9",
+              "on-error-container": "#93000a",
+              "tertiary-fixed": "#ffddb5",
+              "on-tertiary-fixed": "#2a1800",
+              "primary-container": "#1f4e79",
+              "on-tertiary-fixed-variant": "#643f00",
+              "surface-container-low": "#f3f3f3",
+              "on-primary-container": "#95bff1",
+              "on-primary-fixed-variant": "#184974",
+              "inverse-on-surface": "#f1f1f1",
+              "surface-dim": "#dadada",
+              "outline": "#72777f",
+              "on-error": "#ffffff",
+              "on-secondary-container": "#556477",
+              "tertiary-fixed-dim": "#f5bc72",
+              "on-surface": "#1a1c1c",
+              "error-container": "#ffdad6",
+              "on-secondary-fixed-variant": "#39485a",
+              "surface-container-lowest": "#ffffff",
+              "surface-container": "#eeeeee",
+              "primary": "#00375e"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen">
+<!-- SideNavBar (The Anchor) -->
+<aside class="fixed left-0 top-0 h-screen w-[220px] bg-[#1F4E79] dark:bg-slate-900 shadow-xl dark:shadow-none z-50 flex flex-col py-6">
+<div class="px-6 mb-10">
+<h1 class="text-2xl font-bold text-white tracking-tighter">SGRH</h1>
+<p class="text-[10px] text-primary-fixed-dim uppercase tracking-[0.2em] font-bold">Gestión Humana</p>
+</div>
+<nav class="flex-1 flex flex-col">
+<!-- Navigation Items -->
+<a class="flex items-center gap-3 px-4 py-3 text-slate-300 hover:text-white transition-all duration-200 hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-['Inter'] text-sm tracking-wide font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-white border-l-4 border-[#a0cafc] bg-white/10 translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-['Inter'] text-sm tracking-wide font-medium">Empleados</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-300 hover:text-white transition-all duration-200 hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">person_search</span>
+<span class="font-['Inter'] text-sm tracking-wide font-medium">Selección</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-300 hover:text-white transition-all duration-200 hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">assignment_ind</span>
+<span class="font-['Inter'] text-sm tracking-wide font-medium">Afiliaciones</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-300 hover:text-white transition-all duration-200 hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-['Inter'] text-sm tracking-wide font-medium">Nómina</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-300 hover:text-white transition-all duration-200 hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="font-['Inter'] text-sm tracking-wide font-medium">Liquidaciones</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-300 hover:text-white transition-all duration-200 hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-['Inter'] text-sm tracking-wide font-medium">PILA</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-300 hover:text-white transition-all duration-200 hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">exit_to_app</span>
+<span class="font-['Inter'] text-sm tracking-wide font-medium">Retiro</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-300 hover:text-white transition-all duration-200 hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">verified</span>
+<span class="font-['Inter'] text-sm tracking-wide font-medium">Certificaciones</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-300 hover:text-white transition-all duration-200 hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">school</span>
+<span class="font-['Inter'] text-sm tracking-wide font-medium">Capacitación</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-300 hover:text-white transition-all duration-200 hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">query_stats</span>
+<span class="font-['Inter'] text-sm tracking-wide font-medium">Evaluación</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-300 hover:text-white transition-all duration-200 hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-['Inter'] text-sm tracking-wide font-medium">Configuración</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content Wrapper -->
+<main class="ml-[220px] min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="h-16 flex justify-between items-center px-8 z-40 bg-white/70 backdrop-blur-md sticky top-0 bg-slate-100">
+<div class="flex items-center gap-4">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors">search</span>
+<input class="bg-surface-container-lowest border-none rounded-lg pl-10 pr-4 py-2 text-sm w-64 focus:ring-2 focus:ring-[#a0cafc]/30 outline-none transition-all" placeholder="Buscar colaborador..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-slate-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-slate-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<div class="flex items-center gap-3 border-l border-slate-200 pl-6 ml-2">
+<div class="text-right">
+<p class="text-xs font-bold text-primary">Admin SGRH</p>
+<p class="text-[10px] text-slate-500">Recursos Humanos</p>
+</div>
+<span class="material-symbols-outlined text-3xl text-slate-400">account_circle</span>
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<div class="flex-1 p-10 max-w-5xl mx-auto w-full">
+<!-- Header Section -->
+<div class="mb-12">
+<nav class="flex gap-2 text-[10px] font-bold text-slate-400 tracking-widest uppercase mb-4">
+<span>Empleados</span>
+<span>/</span>
+<span class="text-primary">Vinculación</span>
+</nav>
+<h2 class="text-3xl font-extrabold text-primary tracking-tight font-headline">Vincular Nuevo Empleado</h2>
+</div>
+<!-- 3-Step Progress Indicator -->
+<div class="relative mb-16 px-4">
+<div class="absolute top-1/2 left-0 w-full h-0.5 bg-surface-container-high -translate-y-1/2 -z-10"></div>
+<div class="flex justify-between items-center">
+<!-- Step 1 (Active) -->
+<div class="flex flex-col items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold shadow-lg ring-4 ring-white">
+                            1
+                        </div>
+<span class="text-xs font-bold text-primary tracking-wide">Datos personales</span>
+</div>
+<!-- Step 2 (Inactive) -->
+<div class="flex flex-col items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center font-bold ring-4 ring-white">
+                            2
+                        </div>
+<span class="text-xs font-medium text-on-surface-variant tracking-wide">Datos laborales</span>
+</div>
+<!-- Step 3 (Inactive) -->
+<div class="flex flex-col items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center font-bold ring-4 ring-white">
+                            3
+                        </div>
+<span class="text-xs font-medium text-on-surface-variant tracking-wide">Confirmación</span>
+</div>
+</div>
+</div>
+<!-- Form Content (Step 1) -->
+<div class="bg-surface-container-lowest rounded-xl p-8 shadow-sm border border-outline-variant/10">
+<div class="flex items-center gap-3 mb-8 border-b border-surface-container-low pb-6">
+<span class="material-symbols-outlined text-primary-fixed-dim bg-primary/5 p-2 rounded-lg">person</span>
+<div>
+<h3 class="font-bold text-on-surface">Información de Identidad</h3>
+<p class="text-xs text-on-surface-variant">Complete los datos básicos del nuevo integrante del equipo.</p>
+</div>
+</div>
+<form class="space-y-10">
+<div class="grid grid-cols-2 gap-x-8 gap-y-6">
+<!-- Nombres -->
+<div class="space-y-2">
+<label class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider block">Nombres</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-primary-fixed-dim transition-all outline-none" placeholder="Ej. Juan Andrés" type="text"/>
+</div>
+<!-- Apellidos -->
+<div class="space-y-2">
+<label class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider block">Apellidos</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-primary-fixed-dim transition-all outline-none" placeholder="Ej. Pérez García" type="text"/>
+</div>
+<!-- Cédula -->
+<div class="space-y-2">
+<label class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider block">Cédula</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-primary-fixed-dim transition-all outline-none" placeholder="Número de identificación" type="text"/>
+</div>
+<!-- Correo Electrónico -->
+<div class="space-y-2">
+<label class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider block">Correo electrónico</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-primary-fixed-dim transition-all outline-none" placeholder="usuario@empresa.com" type="email"/>
+</div>
+<!-- Teléfono -->
+<div class="space-y-2">
+<label class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider block">Teléfono</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-primary-fixed-dim transition-all outline-none" placeholder="+57 300 000 0000" type="tel"/>
+</div>
+<!-- Dirección -->
+<div class="space-y-2">
+<label class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider block">Dirección</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-primary-fixed-dim transition-all outline-none" placeholder="Dirección de residencia" type="text"/>
+</div>
+<!-- Ciudad -->
+<div class="space-y-2">
+<label class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider block">Ciudad</label>
+<select class="w-full bg-surface-container-low border-none rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-primary-fixed-dim transition-all outline-none appearance-none">
+<option>Bogotá D.C.</option>
+<option>Medellín</option>
+<option>Cali</option>
+<option>Barranquilla</option>
+</select>
+</div>
+</div>
+<div class="mt-12 pt-8 border-t border-surface-container-low">
+<div class="flex items-center gap-3 mb-8">
+<span class="material-symbols-outlined text-primary-fixed-dim bg-primary/5 p-2 rounded-lg">account_balance</span>
+<div>
+<h3 class="font-bold text-on-surface">Información Bancaria</h3>
+<p class="text-xs text-on-surface-variant">Datos para la consignación de nómina.</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-x-8 gap-y-6">
+<!-- Banco -->
+<div class="space-y-2">
+<label class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider block">Banco</label>
+<select class="w-full bg-surface-container-low border-none rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-primary-fixed-dim transition-all outline-none appearance-none">
+<option>Bancolombia</option>
+<option>Banco de Bogotá</option>
+<option>Davivienda</option>
+<option>BBVA</option>
+</select>
+</div>
+<!-- Número de cuenta -->
+<div class="space-y-2">
+<label class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider block">Número de cuenta</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-primary-fixed-dim transition-all outline-none" placeholder="000-000000-00" type="text"/>
+</div>
+</div>
+</div>
+</form>
+</div>
+<!-- Footer Actions -->
+<div class="mt-10 flex justify-end gap-4">
+<button class="px-8 py-3 rounded-lg text-sm font-bold text-primary border-2 border-outline-variant/30 hover:border-primary/50 transition-all">
+                    Cancelar
+                </button>
+<button class="px-10 py-3 rounded-lg text-sm font-bold text-white bg-gradient-to-br from-primary to-primary-container shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all">
+                    Siguiente
+                </button>
+</div>
+</div>
+<!-- Decorative Elements for "The Architectural Curator" feel -->
+<div class="fixed bottom-0 right-0 w-64 h-64 bg-primary/5 blur-[120px] -z-10 rounded-full"></div>
+<div class="fixed top-20 right-20 w-32 h-32 bg-[#a0cafc]/10 blur-[80px] -z-10 rounded-full"></div>
+</main>
+</body></html>

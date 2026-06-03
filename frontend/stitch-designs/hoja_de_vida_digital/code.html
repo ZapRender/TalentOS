@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hoja de Vida Digital — Carlos Rodríguez</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary-fixed": "#d4e4fa",
+              "surface-variant": "#e2e2e2",
+              "on-surface-variant": "#42474f",
+              "on-primary": "#ffffff",
+              "surface-container-highest": "#e2e2e2",
+              "tertiary-container": "#6a4300",
+              "surface-bright": "#f9f9f9",
+              "background": "#f9f9f9",
+              "secondary-fixed-dim": "#b8c8de",
+              "secondary-container": "#d1e1f7",
+              "primary-fixed-dim": "#a0cafc",
+              "on-tertiary": "#ffffff",
+              "on-primary-fixed": "#001d35",
+              "on-secondary-fixed": "#0d1d2d",
+              "primary-fixed": "#d1e4ff",
+              "inverse-primary": "#a0cafc",
+              "on-background": "#1a1c1c",
+              "tertiary": "#4c2e00",
+              "surface-tint": "#35618d",
+              "on-secondary": "#ffffff",
+              "inverse-surface": "#2f3131",
+              "on-tertiary-container": "#e9b268",
+              "outline-variant": "#c2c7d0",
+              "error": "#ba1a1a",
+              "secondary": "#516072",
+              "surface-container-high": "#e8e8e8",
+              "surface": "#f9f9f9",
+              "on-error-container": "#93000a",
+              "tertiary-fixed": "#ffddb5",
+              "on-tertiary-fixed": "#2a1800",
+              "primary-container": "#1f4e79",
+              "on-tertiary-fixed-variant": "#643f00",
+              "surface-container-low": "#f3f3f3",
+              "on-primary-container": "#95bff1",
+              "on-primary-fixed-variant": "#184974",
+              "inverse-on-surface": "#f1f1f1",
+              "surface-dim": "#dadada",
+              "outline": "#72777f",
+              "on-error": "#ffffff",
+              "on-secondary-container": "#556477",
+              "tertiary-fixed-dim": "#f5bc72",
+              "on-surface": "#1a1c1c",
+              "error-container": "#ffdad6",
+              "on-secondary-fixed-variant": "#39485a",
+              "surface-container-lowest": "#ffffff",
+              "surface-container": "#eeeeee",
+              "primary": "#00375e"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body antialiased">
+<!-- SideNavBar (Execution from JSON) -->
+<aside class="fixed left-0 top-0 h-screen w-[220px] bg-[#1F4E79] dark:bg-slate-900 shadow-xl dark:shadow-none flex flex-col py-6 z-50">
+<div class="px-6 mb-10">
+<h1 class="text-2xl font-bold text-white tracking-tighter">SGRH</h1>
+<p class="text-[10px] text-primary-fixed-dim uppercase tracking-[0.2em] font-bold">Gestión Humana</p>
+</div>
+<nav class="flex-1 space-y-1 overflow-y-auto no-scrollbar font-['Inter'] text-sm tracking-wide font-medium">
+<!-- Active: Empleados -->
+<a class="flex items-center gap-3 px-4 py-3 text-slate-300 hover:text-white transition-colors hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-white border-l-4 border-[#a0cafc] bg-white/10 translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span>Empleados</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-300 hover:text-white transition-colors hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">person_search</span>
+<span>Selección</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-300 hover:text-white transition-colors hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">assignment_ind</span>
+<span>Afiliaciones</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-300 hover:text-white transition-colors hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span>Nómina</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-300 hover:text-white transition-colors hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span>Liquidaciones</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-300 hover:text-white transition-colors hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span>PILA</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-300 hover:text-white transition-colors hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">exit_to_app</span>
+<span>Retiro</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-300 hover:text-white transition-colors hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">verified</span>
+<span>Certificaciones</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-300 hover:text-white transition-colors hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">school</span>
+<span>Capacitación</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-300 hover:text-white transition-colors hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">query_stats</span>
+<span>Evaluación</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-300 hover:text-white transition-colors hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Configuración</span>
+</a>
+</nav>
+<div class="px-4 mt-auto pt-6 border-t border-white/10">
+<div class="flex items-center gap-3 px-2 py-2 rounded-lg bg-white/5">
+<img class="w-8 h-8 rounded-full object-cover" data-alt="professional portrait of a male human resources director in a clean modern office setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDocVDXvcPZCWwUBU2u92fKD_l2CDPBAayL7BVpX4lD99_WuYMIUkxFd5WEhIuJritpM054PoYqqdM_5g6o7sypvarEWf_Cs2yYNCi6kxc7OWFnmBrtkD2pFqBSg9eU42mMkICsCP-5qYdhe5CijqpCVXzK8jeBwR_uPTpac3qsRqnV2HPJ-oXlk2_hmkHMOTavHs8jr4kfvWd-bEhHIggccpHMS3KILU2VlS5___mWximpPtmhkqeoOD6SAik9SSWDMzXb10qc3jyC"/>
+<div class="overflow-hidden">
+<p class="text-white text-xs font-bold truncate">Admin SGRH</p>
+<p class="text-slate-400 text-[10px] truncate">admin@sgrh.co</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- TopNavBar (Execution from JSON) -->
+<header class="fixed top-0 right-0 w-[calc(100%-220px)] h-16 bg-white/70 backdrop-blur-md flex justify-between items-center px-8 z-40 bg-slate-100">
+<div class="flex items-center gap-4 bg-surface-container-lowest px-4 py-2 rounded-xl focus-within:ring-2 focus-within:ring-[#a0cafc]/30 transition-all w-96">
+<span class="material-symbols-outlined text-outline">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-full placeholder:text-outline" placeholder="Buscar empleado o documento..." type="text"/>
+</div>
+<div class="flex items-center gap-6">
+<button class="relative text-on-secondary-container hover:text-[#1F4E79] transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full border-2 border-white"></span>
+</button>
+<button class="text-on-secondary-container hover:text-[#1F4E79] transition-colors">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<div class="h-8 w-px bg-outline-variant/30"></div>
+<button class="flex items-center gap-2 text-[#1F4E79] font-semibold text-sm">
+<span class="material-symbols-outlined">account_circle</span>
+<span>Mi Perfil</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-[220px] pt-24 px-10 pb-16 min-h-screen">
+<!-- Header Section -->
+<header class="mb-10 flex justify-between items-end">
+<div>
+<nav class="flex items-center gap-2 text-on-surface-variant text-xs mb-2 tracking-widest uppercase font-bold">
+<span>Empleados</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span>Expediente</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary font-extrabold">Digital</span>
+</nav>
+<h2 class="text-4xl font-headline font-extrabold text-primary tracking-tight">Hoja de Vida Digital — Carlos Rodríguez</h2>
+<div class="flex items-center gap-4 mt-3">
+<span class="inline-flex items-center gap-2 text-sm text-on-surface-variant">
+<span class="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]"></span>
+                        Contrato Indefinido
+                    </span>
+<span class="text-outline-variant">|</span>
+<span class="text-sm text-on-surface-variant">ID: 1.032.445.890</span>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="px-6 py-2.5 rounded-lg border border-outline-variant/30 text-primary font-semibold text-sm hover:bg-surface-container-low transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">print</span>
+                    Imprimir Expediente
+                </button>
+<button class="px-6 py-2.5 rounded-lg bg-gradient-to-br from-primary to-primary-container text-white font-bold text-sm shadow-lg shadow-primary/10 hover:shadow-primary/20 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                    Nuevo Documento
+                </button>
+</div>
+</header>
+<!-- Bento Grid / Layout -->
+<div class="grid grid-cols-12 gap-8">
+<!-- Sidebar Quick Access -->
+<div class="col-span-3 space-y-6">
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-outline-variant/10">
+<div class="flex flex-col items-center text-center mb-6">
+<img class="w-24 h-24 rounded-full object-cover border-4 border-surface mb-4" data-alt="professional corporate headshot of a middle-aged hispanic man smiling warmly with neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPqhYBTq5mloiT8rPzq7pdi9hBLiAMFRsSOHd2n2bql5tHsUXlNWwk27BuwrPbrlVmz_M_OYBNIdEuiWkYJwLclLaKW3OkGpWtVWyecdjZYsZ2jjRbLAE_xobkIbiPsg7Z_sphk6RGY9vBmuEnRtl52jcrtNthYZFeJMl-kkR3S5CeQwxZDq50XOssIUdWphTIA6YP7QhD1DuwLcrgVP2yDyuaThx5IRae9McGQApGT8zf9ZjYKpOct-okCbNi1NJ2vIHcZ5i2GKud"/>
+<h3 class="font-bold text-lg text-on-surface">Carlos Arturo Rodríguez</h3>
+<p class="text-sm text-on-surface-variant">Analista de Proyectos Senior</p>
+</div>
+<div class="space-y-4">
+<div class="bg-surface-container-low p-3 rounded-lg">
+<p class="text-[10px] text-on-surface-variant uppercase font-bold tracking-wider mb-1">Integridad Documental</p>
+<div class="flex items-center gap-3">
+<div class="flex-1 h-1.5 bg-outline-variant/30 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[85%]"></div>
+</div>
+<span class="text-xs font-bold text-primary">85%</span>
+</div>
+</div>
+<div class="flex justify-between text-xs py-2 border-b border-outline-variant/10">
+<span class="text-on-surface-variant">Ingreso</span>
+<span class="font-bold">12/03/2021</span>
+</div>
+<div class="flex justify-between text-xs py-2 border-b border-outline-variant/10">
+<span class="text-on-surface-variant">Área</span>
+<span class="font-bold">Operaciones</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Documents Accordion Container -->
+<div class="col-span-9 space-y-4">
+<!-- Expanded Section: Selección y Contratación -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant/10 overflow-hidden shadow-sm">
+<div class="px-8 py-5 flex justify-between items-center cursor-pointer hover:bg-surface-container-low transition-colors border-b border-outline-variant/10">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined">folder_shared</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface">Selección y contratación</h4>
+<p class="text-xs text-on-surface-variant">3 documentos disponibles</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-xs font-bold text-on-primary-fixed-variant flex items-center gap-1 hover:underline">
+<span class="material-symbols-outlined text-[18px]">upload</span>
+                                Subir documento
+                            </button>
+<span class="material-symbols-outlined text-outline-variant">expand_less</span>
+</div>
+</div>
+<div class="p-8 space-y-6">
+<!-- Document Cards -->
+<div class="flex flex-col gap-4">
+<!-- Card 1 -->
+<div class="flex items-center justify-between p-4 bg-surface-container-low rounded-lg hover:bg-surface-container-high transition-all group">
+<div class="flex items-center gap-4">
+<div class="p-3 bg-red-50 text-red-600 rounded-lg group-hover:bg-red-100 transition-colors">
+<span class="material-symbols-outlined text-[28px]">picture_as_pdf</span>
+</div>
+<div>
+<h5 class="font-bold text-sm text-on-surface">Contrato Laboral Término Indefinido</h5>
+<div class="flex gap-3 mt-1 text-[11px] text-on-surface-variant font-medium">
+<span>Subido: 12 Mar 2021</span>
+<span class="text-outline-variant">•</span>
+<span>Por: Sandra Milena (HR)</span>
+<span class="text-outline-variant">•</span>
+<span>1.2 MB</span>
+</div>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="p-2 rounded-md hover:bg-white text-on-surface-variant hover:text-primary transition-colors" title="Previsualizar">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+<button class="p-2 rounded-md hover:bg-white text-on-surface-variant hover:text-primary transition-colors" title="Descargar">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="flex items-center justify-between p-4 bg-surface-container-lowest rounded-lg border border-outline-variant/20 hover:bg-surface-container-low transition-all group">
+<div class="flex items-center gap-4">
+<div class="p-3 bg-red-50 text-red-600 rounded-lg group-hover:bg-red-100 transition-colors">
+<span class="material-symbols-outlined text-[28px]">picture_as_pdf</span>
+</div>
+<div>
+<h5 class="font-bold text-sm text-on-surface">Diploma Grado Ingeniería de Sistemas</h5>
+<div class="flex gap-3 mt-1 text-[11px] text-on-surface-variant font-medium">
+<span>Subido: 10 Mar 2021</span>
+<span class="text-outline-variant">•</span>
+<span>Por: Carlos Rodríguez (Emp)</span>
+<span class="text-outline-variant">•</span>
+<span>2.4 MB</span>
+</div>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="p-2 rounded-md hover:bg-white text-on-surface-variant hover:text-primary transition-colors" title="Previsualizar">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+<button class="p-2 rounded-md hover:bg-white text-on-surface-variant hover:text-primary transition-colors" title="Descargar">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="flex items-center justify-between p-4 bg-surface-container-low rounded-lg hover:bg-surface-container-high transition-all group">
+<div class="flex items-center gap-4">
+<div class="p-3 bg-red-50 text-red-600 rounded-lg group-hover:bg-red-100 transition-colors">
+<span class="material-symbols-outlined text-[28px]">picture_as_pdf</span>
+</div>
+<div>
+<h5 class="font-bold text-sm text-on-surface">Prueba Técnica Analista Senior - Aprobado</h5>
+<div class="flex gap-3 mt-1 text-[11px] text-on-surface-variant font-medium">
+<span>Subido: 05 Mar 2021</span>
+<span class="text-outline-variant">•</span>
+<span>Por: Ricardo Gómez (Jefe Inm)</span>
+<span class="text-outline-variant">•</span>
+<span>850 KB</span>
+</div>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="p-2 rounded-md hover:bg-white text-on-surface-variant hover:text-primary transition-colors" title="Previsualizar">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+<button class="p-2 rounded-md hover:bg-white text-on-surface-variant hover:text-primary transition-colors" title="Descargar">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Collapsed Section: Afiliaciones -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant/10 overflow-hidden shadow-sm">
+<div class="px-8 py-5 flex justify-between items-center cursor-pointer hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-4 opacity-70">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">assignment_turned_in</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface">Afiliaciones</h4>
+<p class="text-xs text-on-surface-variant">4 documentos disponibles</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-xs font-bold text-on-primary-fixed-variant flex items-center gap-1 hover:underline">
+<span class="material-symbols-outlined text-[18px]">upload</span>
+                                Subir documento
+                            </button>
+<span class="material-symbols-outlined text-outline-variant">expand_more</span>
+</div>
+</div>
+</section>
+<!-- Collapsed Section: Nómina -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant/10 overflow-hidden shadow-sm">
+<div class="px-8 py-5 flex justify-between items-center cursor-pointer hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-4 opacity-70">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface">Nómina</h4>
+<p class="text-xs text-on-surface-variant">24 documentos disponibles</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-xs font-bold text-on-primary-fixed-variant flex items-center gap-1 hover:underline">
+<span class="material-symbols-outlined text-[18px]">upload</span>
+                                Subir documento
+                            </button>
+<span class="material-symbols-outlined text-outline-variant">expand_more</span>
+</div>
+</div>
+</section>
+<!-- Collapsed Section: Retiro -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant/10 overflow-hidden shadow-sm">
+<div class="px-8 py-5 flex justify-between items-center cursor-pointer hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-4 opacity-70">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">exit_to_app</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface">Retiro</h4>
+<p class="text-xs text-on-surface-variant">Sin documentos registrados</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-xs font-bold text-on-primary-fixed-variant flex items-center gap-1 hover:underline">
+<span class="material-symbols-outlined text-[18px]">upload</span>
+                                Subir documento
+                            </button>
+<span class="material-symbols-outlined text-outline-variant">expand_more</span>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+<!-- Floating Action Button (Contextual) -->
+<button class="fixed bottom-8 right-8 w-14 h-14 rounded-xl bg-primary text-on-primary shadow-2xl shadow-primary/40 flex items-center justify-center hover:scale-105 transition-transform z-50">
+<span class="material-symbols-outlined text-[32px]">contact_support</span>
+</button>
+</body></html>

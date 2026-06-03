@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "outline-variant": "#c2c7d0",
+              "surface-container": "#eeeeee",
+              "on-tertiary": "#ffffff",
+              "on-background": "#1a1c1c",
+              "on-secondary-container": "#556477",
+              "primary-fixed-dim": "#a0cafc",
+              "secondary-container": "#d1e1f7",
+              "tertiary-fixed": "#ffddb5",
+              "error-container": "#ffdad6",
+              "tertiary-fixed-dim": "#f5bc72",
+              "surface-tint": "#35618d",
+              "surface-variant": "#e2e2e2",
+              "secondary-fixed": "#d4e4fa",
+              "tertiary-container": "#6a4300",
+              "surface-container-high": "#e8e8e8",
+              "tertiary": "#4c2e00",
+              "on-secondary-fixed-variant": "#39485a",
+              "on-tertiary-fixed-variant": "#643f00",
+              "primary": "#00375e",
+              "surface-container-low": "#f3f3f3",
+              "background": "#f9f9f9",
+              "surface-bright": "#f9f9f9",
+              "on-tertiary-fixed": "#2a1800",
+              "surface-container-highest": "#e2e2e2",
+              "on-primary-container": "#95bff1",
+              "surface-dim": "#dadada",
+              "surface-container-lowest": "#ffffff",
+              "secondary": "#516072",
+              "on-primary-fixed-variant": "#184974",
+              "on-error": "#ffffff",
+              "surface": "#f9f9f9",
+              "primary-fixed": "#d1e4ff",
+              "on-surface": "#1a1c1c",
+              "error": "#ba1a1a",
+              "on-tertiary-container": "#e9b268",
+              "on-surface-variant": "#42474f",
+              "on-secondary-fixed": "#0d1d2d",
+              "on-primary-fixed": "#001d35",
+              "secondary-fixed-dim": "#b8c8de",
+              "outline": "#72777f",
+              "on-primary": "#ffffff",
+              "on-error-container": "#93000a",
+              "primary-container": "#1f4e79",
+              "inverse-surface": "#2f3131",
+              "inverse-primary": "#a0cafc",
+              "inverse-on-surface": "#f1f1f1",
+              "on-secondary": "#ffffff"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .a4-preview {
+            aspect-ratio: 1 / 1.414;
+            max-width: 800px;
+        }
+    </style>
+</head>
+<body class="bg-background font-body text-on-background antialiased">
+<!-- SideNavBar (Authority: JSON) -->
+<aside class="fixed left-0 top-0 h-full w-[220px] z-50 bg-[#1F4E79] dark:bg-[#001D33] shadow-[12px_0_32px_-4px_rgba(0,55,94,0.08)] flex flex-col py-8 px-4 font-['Inter'] antialiased tracking-tight">
+<div class="mb-10 px-2 flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+</div>
+<div>
+<h1 class="text-xl font-bold text-white tracking-wider uppercase">SGRH</h1>
+<p class="text-[10px] text-white/50 uppercase tracking-[0.2em]">Gestión de Talento</p>
+</div>
+</div>
+<nav class="flex-1 space-y-2">
+<!-- Dashboard -->
+<a class="flex items-center gap-3 py-3 px-3 rounded-lg text-white/70 hover:text-white transition-colors duration-200 hover:bg-white/5 group" href="#">
+<span class="material-symbols-outlined text-xl">dashboard</span>
+<span class="text-sm">Dashboard</span>
+</a>
+<!-- Colaboradores -->
+<a class="flex items-center gap-3 py-3 px-3 rounded-lg text-white/70 hover:text-white transition-colors duration-200 hover:bg-white/5 group" href="#">
+<span class="material-symbols-outlined text-xl">group</span>
+<span class="text-sm">Colaboradores</span>
+</a>
+<!-- Nómina -->
+<a class="flex items-center gap-3 py-3 px-3 rounded-lg text-white/70 hover:text-white transition-colors duration-200 hover:bg-white/5 group" href="#">
+<span class="material-symbols-outlined text-xl">payments</span>
+<span class="text-sm">Nómina</span>
+</a>
+<!-- Certificaciones (Active based on Intent) -->
+<a class="flex items-center gap-3 py-3 px-3 rounded-lg relative text-white font-medium before:content-[''] before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:h-8 before:w-1 before:bg-[#A0CAFC] before:rounded-r-full hover:bg-white/5 group" href="#">
+<span class="material-symbols-outlined text-xl text-[#A0CAFC]" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<span class="text-sm">Certificaciones</span>
+</a>
+<!-- Configuración -->
+<a class="flex items-center gap-3 py-3 px-3 rounded-lg text-white/70 hover:text-white transition-colors duration-200 hover:bg-white/5 group" href="#">
+<span class="material-symbols-outlined text-xl">settings</span>
+<span class="text-sm">Configuración</span>
+</a>
+</nav>
+<div class="pt-8 border-t border-white/10">
+<a class="flex items-center gap-3 py-3 px-3 rounded-lg text-white/70 hover:text-white transition-colors duration-200 hover:bg-white/5 group" href="#">
+<span class="material-symbols-outlined text-xl">logout</span>
+<span class="text-sm">Cerrar Sesión</span>
+</a>
+</div>
+</aside>
+<!-- TopAppBar (Authority: JSON) -->
+<header class="fixed top-0 right-0 w-[calc(100%-220px)] h-16 z-40 bg-white/70 dark:bg-slate-900/70 backdrop-blur-md flex items-center justify-between px-8 ml-[220px] font-['Inter'] text-sm font-medium border-none bg-[#F3F3F3]/50 dark:bg-slate-800/50">
+<div class="flex items-center gap-6">
+<div class="relative w-72">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-lg">search</span>
+<input class="w-full bg-surface-container-lowest border-none py-2 pl-10 pr-4 rounded-lg focus:ring-2 focus:ring-primary-fixed-dim text-xs" placeholder="Buscar módulos o ayuda..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-all text-[#1F4E79] dark:text-[#A0CAFC]">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-all text-[#1F4E79] dark:text-[#A0CAFC]">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<div class="h-8 w-px bg-outline-variant/30 mx-2"></div>
+<div class="flex items-center gap-3 pl-2 cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-800 p-1 rounded-lg">
+<div class="text-right hidden sm:block">
+<p class="text-[11px] font-bold text-on-surface leading-tight">Admin Principal</p>
+<p class="text-[9px] text-on-surface-variant uppercase tracking-wider">Recursos Humanos</p>
+</div>
+<img class="w-8 h-8 rounded-lg object-cover" data-alt="professional portrait of a corporate male administrator in business attire, clean minimal background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCenXhSViH0fQEPNZQBll7MHLVARf2oPthIJo1vpAYXBhPKmvXl1jVgGVvrorItb8WuMQ7ZnF1GpSI0hZ5rdCfZWiGcc89V-vQfGTKqb0d8TPtbdUoJDMNxlkJvoqERs9MdZyqVxmNDg7xnUAURxxStQB-vXGixlTBr7M2kBa0DgxRVtYDhxCpltgIJf6YA_Ee5I81lP0amJAUFEjAqBoanODwGGrX6sBu0PFALGLYiV1Two9HMkovGkcqadDlXZV5iwEyiB9dghqP7"/>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="ml-[220px] pt-16 min-h-screen bg-background flex flex-col">
+<!-- Header Section -->
+<section class="px-10 pt-10 pb-6 flex items-end justify-between">
+<div>
+<nav class="flex items-center gap-2 text-[10px] text-on-surface-variant font-bold uppercase tracking-widest mb-2">
+<span>Módulo 9</span>
+<span class="material-symbols-outlined text-[12px]">chevron_right</span>
+<span>Certificaciones</span>
+</nav>
+<h2 class="text-3xl font-black text-on-surface tracking-tight leading-none">Certificación Laboral</h2>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-5 py-2.5 rounded-lg border border-outline-variant/30 text-primary font-semibold text-xs hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-sm">history</span>
+                    Historial de Emisiones
+                </button>
+</div>
+</section>
+<!-- Split Layout Grid -->
+<section class="flex-1 px-10 pb-12 grid grid-cols-12 gap-10">
+<!-- Left Panel: Configuration (40%) -->
+<div class="col-span-12 lg:col-span-5 space-y-8">
+<!-- Step 1: Employee Selection -->
+<div class="bg-surface-container-lowest p-8 rounded-xl shadow-[0_4px_20px_-8px_rgba(0,55,94,0.1)] border border-outline-variant/10">
+<div class="flex items-center gap-3 mb-6">
+<div class="w-8 h-8 rounded bg-primary/5 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-xl">person_search</span>
+</div>
+<h3 class="font-bold text-on-surface text-base">Seleccionar colaborador</h3>
+</div>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full h-14 pl-12 pr-4 bg-surface-container-low border-none rounded-xl focus:ring-2 focus:ring-primary-fixed-dim placeholder:text-on-surface-variant/50 text-sm" placeholder="Nombre o CC..." type="text"/>
+</div>
+<p class="mt-4 text-[11px] text-on-surface-variant leading-relaxed">
+<span class="material-symbols-outlined text-[14px] align-middle mr-1">info</span>
+                        Búsqueda habilitada para colaboradores <span class="text-primary font-bold">activos</span> y <span class="text-on-surface font-bold">retirados</span>.
+                    </p>
+</div>
+<!-- Step 2: Certification Type -->
+<div class="bg-surface-container-lowest p-8 rounded-xl shadow-[0_4px_20px_-8px_rgba(0,55,94,0.1)] border border-outline-variant/10">
+<div class="flex items-center gap-3 mb-6">
+<div class="w-8 h-8 rounded bg-primary/5 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-xl">fact_check</span>
+</div>
+<h3 class="font-bold text-on-surface text-base">Tipo de certificación</h3>
+</div>
+<div class="space-y-4">
+<label class="flex items-center p-4 rounded-xl border border-outline-variant/20 cursor-pointer hover:bg-surface-container-low transition-all group relative overflow-hidden">
+<input class="w-5 h-5 text-primary focus:ring-primary-fixed-dim border-outline-variant/50" name="cert_type" type="radio"/>
+<div class="ml-4">
+<span class="block font-bold text-on-surface text-sm">Certificación básica sin salario</span>
+<span class="block text-[11px] text-on-surface-variant">Solo cargo y tiempo de servicio.</span>
+</div>
+</label>
+<label class="flex items-center p-4 rounded-xl border-2 border-primary bg-primary/5 cursor-pointer transition-all group relative overflow-hidden">
+<input checked="" class="w-5 h-5 text-primary focus:ring-primary-fixed-dim border-outline-variant/50" name="cert_type" type="radio"/>
+<div class="ml-4">
+<span class="block font-bold text-primary text-sm">Certificación con salario</span>
+<span class="block text-[11px] text-on-surface-variant">Incluye detalles de remuneración mensual.</span>
+</div>
+<div class="absolute right-4 top-1/2 -translate-y-1/2">
+<span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</label>
+<label class="flex items-center p-4 rounded-xl border border-outline-variant/20 cursor-pointer hover:bg-surface-container-low transition-all group relative overflow-hidden">
+<input class="w-5 h-5 text-primary focus:ring-primary-fixed-dim border-outline-variant/50" name="cert_type" type="radio"/>
+<div class="ml-4">
+<span class="block font-bold text-on-surface text-sm">Certificación de retiro</span>
+<span class="block text-[11px] text-on-surface-variant">Estado inactivo y fecha finalización.</span>
+</div>
+</label>
+</div>
+</div>
+<!-- Action Button -->
+<button class="w-full h-16 bg-gradient-to-br from-[#00375E] to-[#1F4E79] text-white rounded-xl font-bold tracking-wide flex items-center justify-center gap-3 shadow-[0_8px_24px_-8px_rgba(0,55,94,0.4)] hover:scale-[1.01] active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined">auto_stories</span>
+                    Generar certificación
+                </button>
+</div>
+<!-- Right Panel: Preview (60%) -->
+<div class="col-span-12 lg:col-span-7 flex flex-col items-center">
+<!-- Document Title/Status -->
+<div class="w-full mb-6 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_rgba(0,55,94,0.5)]"></span>
+<span class="text-[10px] font-black uppercase tracking-widest text-on-surface-variant">Vista Previa del Documento</span>
+</div>
+<span class="text-[10px] text-on-surface-variant">Escala: 75%</span>
+</div>
+<!-- A4 Card Preview -->
+<div class="a4-preview w-full bg-white border border-outline-variant/20 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.15)] flex flex-col p-16 relative overflow-hidden text-[#1a1c1c] font-serif">
+<!-- Letterhead -->
+<div class="flex justify-between items-start mb-20">
+<div>
+<h4 class="text-xl font-black text-[#1F4E79] tracking-tighter italic">SGRH S.A.S.</h4>
+<p class="text-[10px] uppercase tracking-widest text-[#516072] mt-1 font-sans">Human Capital Solutions</p>
+</div>
+<div class="text-right text-[10px] text-[#516072] font-sans">
+<p>Calle 100 #15-32, Bogotá, Colombia</p>
+<p>NIT: 900.234.567-1</p>
+<p>www.sgrh-talento.co</p>
+</div>
+</div>
+<!-- Header -->
+<div class="text-center mb-16">
+<h5 class="text-lg font-bold tracking-[0.2em] mb-4">A QUIEN INTERESE</h5>
+<div class="w-12 h-0.5 bg-primary mx-auto"></div>
+</div>
+<!-- Body Content -->
+<div class="text-sm leading-relaxed space-y-6 text-justify px-4">
+<p>
+<strong>SGRH S.A.S.</strong>, identificada con NIT 900.234.567-1, hace constar y certifica que el(la) señor(a) 
+                            <span class="bg-surface-container inline-block px-2 rounded font-sans italic">[Nombre del Colaborador]</span>, 
+                            identificado(a) con cédula de ciudadanía No. <span class="bg-surface-container inline-block px-2 rounded font-sans italic">[Documento de Identidad]</span>, 
+                            labora en nuestra compañía desde el día <span class="bg-surface-container inline-block px-2 rounded font-sans italic">[Fecha de Ingreso]</span> 
+                            bajo un contrato a término indefinido.
+                        </p>
+<p>
+                            A la fecha, el(la) colaborador(a) desempeña el cargo de <strong>[Posición / Cargo]</strong>, devengando una asignación salarial mensual básica de 
+                            <span class="bg-primary/5 text-primary px-2 font-bold font-sans italic">[Monto Salarial en Letras y Números]</span>.
+                        </p>
+<p>
+                            Se expide la presente certificación a solicitud del interesado(a), en la ciudad de Bogotá D.C., a los <span class="italic">[Día]</span> días del mes de <span class="italic">[Mes]</span> del año <span class="italic">[Año]</span>.
+                        </p>
+</div>
+<!-- Footer / Signature -->
+<div class="mt-auto pt-20 flex justify-between items-end">
+<div class="w-64">
+<div class="h-0.5 bg-on-background/30 mb-2"></div>
+<p class="font-bold text-sm">COORDINACIÓN DE TALENTO HUMANO</p>
+<p class="text-[11px] text-on-surface-variant font-sans">SGRH S.A.S. - División Corporativa</p>
+</div>
+<!-- Corporate Stamp Placeholder -->
+<div class="w-24 h-24 rounded-full border-2 border-primary/20 flex items-center justify-center flex-col opacity-40">
+<span class="material-symbols-outlined text-4xl text-primary">verified</span>
+<span class="text-[8px] font-black text-primary uppercase text-center mt-1">SGRH<br/>Certificado</span>
+</div>
+</div>
+<!-- Decorative watermark -->
+<div class="absolute -bottom-10 -right-10 opacity-[0.03] rotate-12 pointer-events-none">
+<span class="material-symbols-outlined text-[300px]" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+</div>
+</div>
+<!-- Secondary Action -->
+<div class="mt-8 flex gap-4">
+<button class="flex items-center gap-3 px-8 py-3.5 bg-primary text-white rounded-lg font-bold shadow-lg hover:shadow-primary/20 transition-all">
+<span class="material-symbols-outlined">picture_as_pdf</span>
+                        Descargar PDF
+                    </button>
+<button class="flex items-center gap-3 px-8 py-3.5 border border-outline-variant/30 text-on-surface-variant rounded-lg font-bold hover:bg-white transition-all">
+<span class="material-symbols-outlined">print</span>
+                        Imprimir
+                    </button>
+</div>
+</div>
+</section>
+</main>
+</body></html>

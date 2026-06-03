@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container": "#eeeeee",
+              "primary-fixed": "#d1e4ff",
+              "inverse-primary": "#a0cafc",
+              "surface-container-high": "#e8e8e8",
+              "on-background": "#1a1c1c",
+              "error-container": "#ffdad6",
+              "surface-variant": "#e2e2e2",
+              "surface": "#f9f9f9",
+              "tertiary-container": "#6a4300",
+              "primary-container": "#1f4e79",
+              "tertiary": "#4c2e00",
+              "tertiary-fixed": "#ffddb5",
+              "secondary-fixed-dim": "#b8c8de",
+              "primary": "#00375e",
+              "on-primary": "#ffffff",
+              "on-tertiary": "#ffffff",
+              "outline": "#72777f",
+              "on-primary-fixed": "#001d35",
+              "secondary-container": "#d1e1f7",
+              "inverse-on-surface": "#f1f1f1",
+              "error": "#ba1a1a",
+              "surface-container-highest": "#e2e2e2",
+              "on-secondary-container": "#556477",
+              "secondary-fixed": "#d4e4fa",
+              "on-tertiary-fixed-variant": "#643f00",
+              "outline-variant": "#c2c7d0",
+              "on-secondary-fixed": "#0d1d2d",
+              "on-secondary": "#ffffff",
+              "on-tertiary-fixed": "#2a1800",
+              "on-primary-container": "#95bff1",
+              "primary-fixed-dim": "#a0cafc",
+              "background": "#f9f9f9",
+              "on-tertiary-container": "#e9b268",
+              "on-error": "#ffffff",
+              "on-primary-fixed-variant": "#184974",
+              "secondary": "#516072",
+              "on-surface": "#1a1c1c",
+              "surface-container-low": "#f3f3f3",
+              "surface-bright": "#f9f9f9",
+              "surface-container-lowest": "#ffffff",
+              "on-secondary-fixed-variant": "#39485a",
+              "surface-dim": "#dadada",
+              "on-error-container": "#93000a",
+              "inverse-surface": "#2f3131",
+              "tertiary-fixed-dim": "#f5bc72",
+              "on-surface-variant": "#42474f",
+              "surface-tint": "#35618d"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen">
+<!-- SideNavBar Shell -->
+<aside class="fixed left-0 top-0 h-full w-[220px] bg-[#1F4E79] dark:bg-[#00375E] shadow-2xl shadow-[#00375E]/20 flex flex-col py-6 z-50">
+<div class="px-6 mb-8">
+<h1 class="text-2xl font-bold tracking-tight text-white">SGRH</h1>
+<p class="text-[10px] uppercase tracking-[0.2em] text-white/50 font-semibold">Gestión Humana</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-white/70 hover:text-white hover:bg-[#184974] transition-all duration-200 ease-in-out font-medium text-sm tracking-wide" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span> Dashboard
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-white/70 hover:text-white hover:bg-[#184974] transition-all duration-200 ease-in-out font-medium text-sm tracking-wide" href="#">
+<span class="material-symbols-outlined" data-icon="groups">groups</span> Empleados
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-white relative before:absolute before:left-0 before:w-1 before:h-6 before:bg-[#A0CAFC] before:rounded-r-full font-medium text-sm tracking-wide bg-[#184974]" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span> Nómina
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-white/70 hover:text-white hover:bg-[#184974] transition-all duration-200 ease-in-out font-medium text-sm tracking-wide" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span> Liquidaciones
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-white/70 hover:text-white hover:bg-[#184974] transition-all duration-200 ease-in-out font-medium text-sm tracking-wide" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span> PILA
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-white/70 hover:text-white hover:bg-[#184974] transition-all duration-200 ease-in-out font-medium text-sm tracking-wide" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span> Evaluación
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-white/70 hover:text-white hover:bg-[#184974] transition-all duration-200 ease-in-out font-medium text-sm tracking-wide mt-auto" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span> Configuración
+            </a>
+</nav>
+</aside>
+<!-- TopNavBar Shell -->
+<header class="fixed top-0 right-0 w-[calc(100%-220px)] h-16 bg-white/70 backdrop-blur-md flex justify-between items-center px-8 z-40">
+<div class="flex items-center gap-4">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant" data-icon="search">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-lg text-sm w-64 focus:ring-2 focus:ring-primary-fixed-dim" placeholder="Buscar procesos..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-on-surface-variant hover:bg-surface-container-low p-2 rounded-lg transition-transform active:scale-90">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:bg-surface-container-low p-2 rounded-lg transition-transform active:scale-90">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+<div class="flex items-center gap-3 ml-2">
+<div class="text-right">
+<p class="text-xs font-bold text-primary">Admin Usuario</p>
+<p class="text-[10px] text-on-surface-variant">Gerente RRHH</p>
+</div>
+<img alt="Foto de perfil del administrador" class="w-10 h-10 rounded-full object-cover border-2 border-primary-fixed" data-alt="professional portrait of a confident middle-aged hispanic businessman in a tailored navy suit with soft office lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCITesVyaiF2cckSLsrRpA-5-UwHElA1RDHcuotlU9p690VsCOhDKsbOoqZyE0P6nNU1kZ8_9SW1Wbc4J1ua6A77BOjDmPJcdqnqNAhwMRJL7-aILygbB9CPUuGny-2Ln4qBrx1XWIYI2n-3JbxadNFQ_N325zK4EqOLyT2HzwmOC5Mm4mLANUS-iDjVRo8I94-LeOby2CG7tgSVPoYHLrRwAp2dasPJZz-UczYz2Mfh9b__WI-MJcjji5ZN4wO7tnM-ziEHzs-aOlt"/>
+</div>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="ml-[220px] pt-24 pb-12 px-10 max-w-[1400px]">
+<!-- Header Section -->
+<header class="mb-10 flex justify-between items-end">
+<div>
+<nav class="flex items-center gap-2 text-xs font-medium text-on-surface-variant mb-2 tracking-wide uppercase">
+<span>Nómina</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="chevron_right">chevron_right</span>
+<span class="text-primary font-bold">Aprobación</span>
+</nav>
+<h2 class="text-4xl font-extrabold text-primary tracking-tight">Aprobación — Enero 2025 Q1</h2>
+<p class="text-on-surface-variant mt-1 font-medium">Revisión final de periodos liquidados antes del desembolso.</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-4 py-2 text-sm font-semibold text-primary border border-outline-variant rounded-lg hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="download">download</span> Descargar Reporte
+                </button>
+</div>
+</header>
+<!-- Stepper Component -->
+<section class="mb-12">
+<div class="flex items-center w-full max-w-4xl mx-auto">
+<!-- Step 1 -->
+<div class="flex flex-col items-center flex-1 relative">
+<div class="w-10 h-10 rounded-full bg-[#1F4E79] text-white flex items-center justify-center z-10 shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined" data-icon="check">check</span>
+</div>
+<span class="mt-3 text-xs font-bold text-primary uppercase tracking-tighter">Elaboración</span>
+<div class="absolute left-1/2 top-5 w-full h-[2px] bg-[#1F4E79]"></div>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col items-center flex-1 relative">
+<div class="w-10 h-10 rounded-full bg-[#1F4E79] text-white flex items-center justify-center z-10 shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined" data-icon="check">check</span>
+</div>
+<span class="mt-3 text-xs font-bold text-primary uppercase tracking-tighter">Revisión</span>
+<div class="absolute left-1/2 top-5 w-full h-[2px] bg-[#1F4E79]"></div>
+</div>
+<!-- Step 3 (Current) -->
+<div class="flex flex-col items-center flex-1 relative">
+<div class="w-12 h-12 -mt-1 rounded-full bg-white border-4 border-primary text-primary flex items-center justify-center z-10 shadow-xl">
+<span class="material-symbols-outlined font-bold" data-icon="rule">rule</span>
+</div>
+<span class="mt-2 text-xs font-extrabold text-primary uppercase tracking-tighter">Aprobación gerencia</span>
+<div class="absolute left-1/2 top-5 w-full h-[2px] bg-outline-variant/30"></div>
+</div>
+<!-- Step 4 -->
+<div class="flex flex-col items-center flex-1 relative">
+<div class="w-10 h-10 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center z-10">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+</div>
+<span class="mt-3 text-xs font-bold text-on-surface-variant uppercase tracking-tighter">Pagado</span>
+</div>
+</div>
+</section>
+<!-- Summary & Action Layout (Asymmetric Bento) -->
+<div class="grid grid-cols-12 gap-8 items-start mb-12">
+<!-- Left Side: Summary Cards -->
+<div class="col-span-12 lg:col-span-4 space-y-6">
+<div class="bg-primary text-white p-8 rounded-xl shadow-2xl shadow-primary/20 relative overflow-hidden">
+<div class="relative z-10">
+<p class="text-primary-fixed text-xs font-bold uppercase tracking-widest mb-1">Total a Dispersar</p>
+<h3 class="text-4xl font-extrabold">$34.820.000</h3>
+<div class="mt-6 flex items-center gap-4">
+<div class="bg-white/10 p-3 rounded-lg backdrop-blur-sm">
+<p class="text-[10px] uppercase font-bold text-primary-fixed">Colaboradores</p>
+<p class="text-xl font-bold">18</p>
+</div>
+<div class="bg-white/10 p-3 rounded-lg backdrop-blur-sm">
+<p class="text-[10px] uppercase font-bold text-primary-fixed">Periodo</p>
+<p class="text-xl font-bold">Q1</p>
+</div>
+</div>
+</div>
+<span class="material-symbols-outlined absolute -right-4 -bottom-4 text-[120px] opacity-10" data-icon="account_balance">account_balance</span>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-outline-variant/10">
+<h4 class="text-sm font-bold text-primary mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="info">info</span> Detalle de la nómina
+                    </h4>
+<ul class="space-y-3">
+<li class="flex justify-between text-sm">
+<span class="text-on-surface-variant">Sueldo Base</span>
+<span class="font-semibold">$28.450.000</span>
+</li>
+<li class="flex justify-between text-sm">
+<span class="text-on-surface-variant">Prestaciones Soc.</span>
+<span class="font-semibold">$4.230.000</span>
+</li>
+<li class="flex justify-between text-sm">
+<span class="text-on-surface-variant">Bonificaciones</span>
+<span class="font-semibold text-emerald-600">+$2.140.000</span>
+</li>
+<li class="border-t border-dashed border-outline-variant/30 pt-3 flex justify-between text-sm">
+<span class="text-primary font-bold">Total Bruto</span>
+<span class="font-bold">$34.820.000</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Right Side: Approval Actions -->
+<div class="col-span-12 lg:col-span-8 bg-surface-container-lowest rounded-xl p-10 border border-outline-variant/10 shadow-sm">
+<div class="mb-8">
+<label class="block text-sm font-bold text-on-surface mb-3 tracking-tight" for="observations">Observaciones del aprobador</label>
+<textarea class="w-full bg-surface-container-low border-outline-variant/20 rounded-lg p-4 text-sm focus:ring-2 focus:ring-primary-fixed-dim focus:border-primary-fixed-dim transition-all outline-none" id="observations" placeholder="Escriba aquí sus comentarios técnicos o motivos de rechazo..." rows="4"></textarea>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<button class="flex-1 py-4 px-6 rounded-xl bg-gradient-to-br from-[#10b981] to-[#059669] text-white font-bold text-lg flex items-center justify-center gap-3 shadow-lg shadow-emerald-500/20 hover:scale-[1.02] active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined" data-icon="verified">verified</span> Aprobar nómina
+                    </button>
+<button class="flex-1 py-4 px-6 rounded-xl bg-white border-2 border-error text-error font-bold text-lg flex items-center justify-center gap-3 hover:bg-error-container/20 transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined" data-icon="cancel">cancel</span> Rechazar
+                    </button>
+</div>
+<div class="mt-6 flex items-start gap-3 p-4 bg-tertiary-fixed/30 rounded-lg border border-tertiary-fixed">
+<span class="material-symbols-outlined text-tertiary" data-icon="warning">warning</span>
+<p class="text-xs text-on-tertiary-fixed-variant leading-relaxed">
+<strong>Nota importante:</strong> Al aprobar, se notificará automáticamente al departamento financiero para iniciar el proceso de dispersión bancaria. Esta acción no puede deshacerse.
+                    </p>
+</div>
+</div>
+</div>
+<!-- Approval Log Section -->
+<section class="mt-12">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-xl font-bold text-primary flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="history">history</span> Historial de Aprobaciones
+                </h3>
+</div>
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden border border-outline-variant/10 shadow-sm">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low">
+<th class="px-6 py-4 text-[10px] uppercase tracking-widest font-extrabold text-on-surface-variant">Acción</th>
+<th class="px-6 py-4 text-[10px] uppercase tracking-widest font-extrabold text-on-surface-variant">Usuario</th>
+<th class="px-6 py-4 text-[10px] uppercase tracking-widest font-extrabold text-on-surface-variant">Fecha</th>
+<th class="px-6 py-4 text-[10px] uppercase tracking-widest font-extrabold text-on-surface-variant">Observaciones</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-low">
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="px-6 py-6">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]"></div>
+<span class="text-sm font-bold text-emerald-700">Revisión Exitosa</span>
+</div>
+</td>
+<td class="px-6 py-6">
+<div class="flex items-center gap-3">
+<img alt="Usuario" class="w-8 h-8 rounded-full object-cover" data-alt="close-up portrait of a professional woman with glasses in a modern office setting, bright and clean photography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAK2Tswu3dlcM8vLW9a22TPRN2nTRdTjgw4iOw797n2Pp9ny2Kkm4Yk9ULZ-DG2Yjknyg4YL2rvEyd9tJEfMatZzsFfY5zgtl01ot1htCLFjcns8dqvV60Jd2uDBZhaUO6IWn28GlJxI_X06QPH8iLVmRxeCqQWtIx18uaBLiUTQCzSW9MvSHm8ozLyr3J7A3BseJ0ZaMBG7pwIiLxP1tR2A_LIZ72Gr0utef0Ih2vpNDp0gzK8dubE7PcFaJVfn7lUrCzMtRIElowF"/>
+<span class="text-sm font-medium">Elena Ramírez</span>
+</div>
+</td>
+<td class="px-6 py-6">
+<div class="text-sm">
+<p class="font-semibold">12 Ene 2025</p>
+<p class="text-[10px] text-on-surface-variant uppercase">09:45 AM</p>
+</div>
+</td>
+<td class="px-6 py-6">
+<p class="text-sm text-on-surface-variant max-w-md italic">"Cálculos de seguridad social validados contra planilla PILA. Todo en orden."</p>
+</td>
+</tr>
+<tr class="bg-surface-container-low/30 hover:bg-surface-container-low/50 transition-colors">
+<td class="px-6 py-6">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_rgba(31,78,121,0.5)]"></div>
+<span class="text-sm font-bold text-primary">Nómina Elaborada</span>
+</div>
+</td>
+<td class="px-6 py-6">
+<div class="flex items-center gap-3">
+<img alt="Usuario" class="w-8 h-8 rounded-full object-cover" data-alt="professional male profile photo, corporate attire, neutral studio background, high-end commercial style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB02KD4nnK0W9Dt1cgjq32GQA9m70mlFl7umsYl1n8yZuuloyXlvqqYTWog_jWc7_0rHDuxc6MKygBVTtI8ev7E8YNqNVobR_O-9o6Z3UgS0oAnz4HhMY4G8QGaex1nB_jIuFBRt5nBFMLgdJKPWqwNjRTo1r5EwhlMCNsgDtI2AwYc2K0odqLLHQnim5CPS054L4PBgbLf623crQSFCDrG1yjY2DOWl4x1nnwvOrf75KlVgLr79P-t7J-IfInBhuIDFIAk6D4DtXxy"/>
+<span class="text-sm font-medium">Carlos Méndez</span>
+</div>
+</td>
+<td class="px-6 py-6">
+<div class="text-sm">
+<p class="font-semibold">10 Ene 2025</p>
+<p class="text-[10px] text-on-surface-variant uppercase">03:12 PM</p>
+</div>
+</td>
+<td class="px-6 py-6">
+<p class="text-sm text-on-surface-variant max-w-md italic">"Se incluyeron las 3 nuevas contrataciones del área de TI."</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</main>
+<!-- Contextual FAB (Supressed for Details) -->
+</body></html>

@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-highest": "#e2e2e2",
+              "on-tertiary-fixed": "#2a1800",
+              "surface-container-high": "#e8e8e8",
+              "tertiary-fixed-dim": "#f5bc72",
+              "error-container": "#ffdad6",
+              "secondary": "#516072",
+              "inverse-surface": "#2f3131",
+              "on-tertiary-fixed-variant": "#643f00",
+              "surface-container-low": "#f3f3f3",
+              "surface-variant": "#e2e2e2",
+              "secondary-fixed-dim": "#b8c8de",
+              "surface": "#f9f9f9",
+              "on-error": "#ffffff",
+              "surface-dim": "#dadada",
+              "on-error-container": "#93000a",
+              "on-secondary-fixed": "#0d1d2d",
+              "on-secondary-container": "#556477",
+              "on-secondary": "#ffffff",
+              "tertiary-container": "#6a4300",
+              "on-primary": "#ffffff",
+              "surface-container": "#eeeeee",
+              "inverse-primary": "#a0cafc",
+              "on-surface": "#1a1c1c",
+              "surface-container-lowest": "#ffffff",
+              "on-primary-fixed": "#001d35",
+              "on-primary-fixed-variant": "#184974",
+              "outline": "#72777f",
+              "on-secondary-fixed-variant": "#39485a",
+              "secondary-container": "#d1e1f7",
+              "background": "#f9f9f9",
+              "on-tertiary": "#ffffff",
+              "primary-container": "#1f4e79",
+              "outline-variant": "#c2c7d0",
+              "on-surface-variant": "#42474f",
+              "tertiary": "#4c2e00",
+              "tertiary-fixed": "#ffddb5",
+              "primary": "#00375e",
+              "surface-bright": "#f9f9f9",
+              "primary-fixed": "#d1e4ff",
+              "error": "#ba1a1a",
+              "secondary-fixed": "#d4e4fa",
+              "primary-fixed-dim": "#a0cafc",
+              "surface-tint": "#35618d",
+              "on-primary-container": "#95bff1",
+              "on-tertiary-container": "#e9b268",
+              "inverse-on-surface": "#f1f1f1",
+              "on-background": "#1a1c1c"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased overflow-hidden">
+<!-- Sidebar Shell -->
+<aside class="fixed left-0 top-0 h-full w-[220px] z-50 bg-[#1F4E79] dark:bg-slate-950 flex flex-col py-6 px-4 shadow-[12px_0_32px_-4px_rgba(0,55,94,0.08)]">
+<div class="flex flex-col mb-10 px-2">
+<span class="text-2xl font-bold text-white tracking-tight">SGRH</span>
+<span class="text-xs text-[#A0CAFC] opacity-80 uppercase tracking-widest font-semibold mt-1">Recursos Humanos</span>
+</div>
+<nav class="flex-1 space-y-1 overflow-y-auto custom-scrollbar">
+<!-- Navigation Items mapping JSON -->
+<a class="group flex items-center px-3 py-2.5 text-sm transition-colors duration-200 text-slate-300 opacity-80 hover:opacity-100 hover:bg-[#184974] rounded-lg" href="#">
+<span class="material-symbols-outlined mr-3 text-[#A0CAFC]" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="group flex items-center px-3 py-2.5 text-sm transition-colors duration-200 text-slate-300 opacity-80 hover:opacity-100 hover:bg-[#184974] rounded-lg" href="#">
+<span class="material-symbols-outlined mr-3 text-[#A0CAFC]" data-icon="groups">groups</span>
+<span>Empleados</span>
+</a>
+<!-- Active Navigation: Selección -->
+<a class="group flex items-center px-3 py-2.5 text-sm transition-colors duration-200 relative text-white font-semibold before:content-[''] before:absolute before:left-0 before:w-1 before:h-6 before:bg-[#A0CAFC] before:rounded-r-full bg-[#184974]/50 rounded-lg" href="#">
+<span class="material-symbols-outlined mr-3 text-[#A0CAFC]" data-icon="person_search">person_search</span>
+<span>Selección</span>
+</a>
+<a class="group flex items-center px-3 py-2.5 text-sm transition-colors duration-200 text-slate-300 opacity-80 hover:opacity-100 hover:bg-[#184974] rounded-lg" href="#">
+<span class="material-symbols-outlined mr-3 text-[#A0CAFC]" data-icon="assignment_ind">assignment_ind</span>
+<span>Afiliaciones</span>
+</a>
+<a class="group flex items-center px-3 py-2.5 text-sm transition-colors duration-200 text-slate-300 opacity-80 hover:opacity-100 hover:bg-[#184974] rounded-lg" href="#">
+<span class="material-symbols-outlined mr-3 text-[#A0CAFC]" data-icon="payments">payments</span>
+<span>Nómina</span>
+</a>
+<a class="group flex items-center px-3 py-2.5 text-sm transition-colors duration-200 text-slate-300 opacity-80 hover:opacity-100 hover:bg-[#184974] rounded-lg" href="#">
+<span class="material-symbols-outlined mr-3 text-[#A0CAFC]" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span>Liquidaciones</span>
+</a>
+<a class="group flex items-center px-3 py-2.5 text-sm transition-colors duration-200 text-slate-300 opacity-80 hover:opacity-100 hover:bg-[#184974] rounded-lg" href="#">
+<span class="material-symbols-outlined mr-3 text-[#A0CAFC]" data-icon="description">description</span>
+<span>PILA</span>
+</a>
+<a class="group flex items-center px-3 py-2.5 text-sm transition-colors duration-200 text-slate-300 opacity-80 hover:opacity-100 hover:bg-[#184974] rounded-lg" href="#">
+<span class="material-symbols-outlined mr-3 text-[#A0CAFC]" data-icon="exit_to_app">exit_to_app</span>
+<span>Retiro</span>
+</a>
+<a class="group flex items-center px-3 py-2.5 text-sm transition-colors duration-200 text-slate-300 opacity-80 hover:opacity-100 hover:bg-[#184974] rounded-lg" href="#">
+<span class="material-symbols-outlined mr-3 text-[#A0CAFC]" data-icon="verified">verified</span>
+<span>Certificaciones</span>
+</a>
+<a class="group flex items-center px-3 py-2.5 text-sm transition-colors duration-200 text-slate-300 opacity-80 hover:opacity-100 hover:bg-[#184974] rounded-lg" href="#">
+<span class="material-symbols-outlined mr-3 text-[#A0CAFC]" data-icon="school">school</span>
+<span>Capacitación</span>
+</a>
+<a class="group flex items-center px-3 py-2.5 text-sm transition-colors duration-200 text-slate-300 opacity-80 hover:opacity-100 hover:bg-[#184974] rounded-lg" href="#">
+<span class="material-symbols-outlined mr-3 text-[#A0CAFC]" data-icon="analytics">analytics</span>
+<span>Evaluación</span>
+</a>
+<a class="group flex items-center px-3 py-2.5 text-sm transition-colors duration-200 text-slate-300 opacity-80 hover:opacity-100 hover:bg-[#184974] rounded-lg" href="#">
+<span class="material-symbols-outlined mr-3 text-[#A0CAFC]" data-icon="settings">settings</span>
+<span>Configuración</span>
+</a>
+</nav>
+<div class="mt-auto pt-6 border-t border-white/10">
+<a class="group flex items-center px-3 py-2.5 text-sm text-slate-300 opacity-80 hover:opacity-100 hover:bg-error/10 hover:text-error transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="logout">logout</span>
+<span>Cerrar Sesión</span>
+</a>
+</div>
+</aside>
+<!-- Header Canvas -->
+<header class="fixed top-0 right-0 left-[220px] h-16 z-40 bg-white/70 backdrop-blur-md flex justify-between items-center px-8 border-b border-slate-200/30">
+<div class="flex items-center gap-4">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors" data-icon="search">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-xl text-sm w-64 focus:ring-2 focus:ring-[#A0CAFC]/50 transition-all placeholder:text-slate-400" placeholder="Buscar candidato..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4 text-slate-500 font-medium text-sm">
+<a class="hover:text-[#1F4E79] transition-colors" href="#">Mi Perfil</a>
+<a class="hover:text-[#1F4E79] transition-colors" href="#">Ayuda</a>
+</div>
+<div class="flex items-center gap-3">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-100 text-slate-600 transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-100 text-slate-600 transition-colors">
+<span class="material-symbols-outlined" data-icon="apps">apps</span>
+</button>
+<div class="h-8 w-[1px] bg-slate-200 mx-2"></div>
+<div class="flex items-center gap-3 cursor-pointer group">
+<div class="text-right">
+<p class="text-xs font-bold text-on-surface leading-tight">Admin SGRH</p>
+<p class="text-[10px] text-on-surface-variant font-medium">Recursos Humanos</p>
+</div>
+<img alt="Avatar del Administrador" class="w-10 h-10 rounded-full object-cover ring-2 ring-transparent group-hover:ring-primary/20 transition-all" data-alt="close up headshot of professional hispanic man in his 40s wearing a crisp white dress shirt in a bright modern office setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfiNOB3LoKKAH3soFuI6kFycqPqsl96pBZjifuGRbJz10FOylmeNUHuz7K8tkTVcaFvUlEpu5hWozKJhU6OBZRed1QscLc9n-1PWJXQuBn9DK1Tetgmp8Cux8_9SvaW5HXBGzgFNbL-2NU8xeq6nr29dG5lZ5-PphLcXBQiC-FCrUkjo-4ZQnIrCvk9ycOrZ89FUzX1FNijiCBdYo_Sv0w5wWWF-4gDN9ha2OO-7gvXtUPkFl2sE-xsYiLRuA7bncQbXAAiyOmsUPY"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-[220px] mt-16 p-10 min-h-screen bg-background overflow-y-auto">
+<!-- Action Header -->
+<div class="flex justify-between items-end mb-10">
+<div>
+<h1 class="text-3xl font-extrabold text-primary tracking-tight font-headline">Candidatos</h1>
+<p class="text-on-surface-variant mt-1 font-medium">Gestión del flujo de talento y procesos de selección.</p>
+</div>
+<button class="bg-gradient-to-br from-[#00375e] to-[#1f4e79] text-white px-6 py-3 rounded-lg flex items-center gap-2 font-semibold shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined text-lg" data-icon="add">add</span>
+<span>Nuevo Candidato</span>
+</button>
+</div>
+<!-- Filter Tabs -->
+<div class="flex items-center gap-1 bg-surface-container-low p-1.5 rounded-xl mb-8 w-max">
+<button class="px-5 py-2.5 rounded-lg text-sm font-bold bg-surface-container-lowest text-primary shadow-sm">
+                Todos <span class="ml-2 px-1.5 py-0.5 bg-primary/10 rounded-md text-[10px]">24</span>
+</button>
+<button class="px-5 py-2.5 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high transition-colors">
+                Preselección <span class="ml-2 px-1.5 py-0.5 bg-slate-200 rounded-md text-[10px]">12</span>
+</button>
+<button class="px-5 py-2.5 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high transition-colors">
+                Entrevista inicial <span class="ml-2 px-1.5 py-0.5 bg-slate-200 rounded-md text-[10px]">5</span>
+</button>
+<button class="px-5 py-2.5 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high transition-colors">
+                Entrevista gerencia <span class="ml-2 px-1.5 py-0.5 bg-slate-200 rounded-md text-[10px]">3</span>
+</button>
+<button class="px-5 py-2.5 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high transition-colors">
+                Pruebas <span class="ml-2 px-1.5 py-0.5 bg-slate-200 rounded-md text-[10px]">2</span>
+</button>
+<button class="px-5 py-2.5 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high transition-colors">
+                Referencias <span class="ml-2 px-1.5 py-0.5 bg-slate-200 rounded-md text-[10px]">1</span>
+</button>
+<button class="px-5 py-2.5 rounded-lg text-sm font-medium text-on-surface-variant hover:bg-surface-container-high transition-colors">
+                Admisión <span class="ml-2 px-1.5 py-0.5 bg-slate-200 rounded-md text-[10px]">1</span>
+</button>
+</div>
+<!-- Content Area: Data Table -->
+<div class="bg-surface-container-lowest rounded-2xl shadow-sm overflow-hidden border border-slate-200/50">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low/50">
+<th class="px-6 py-5 text-[11px] font-extrabold uppercase tracking-widest text-on-surface-variant">Nombre candidato</th>
+<th class="px-6 py-5 text-[11px] font-extrabold uppercase tracking-widest text-on-surface-variant">Cargo aplicado</th>
+<th class="px-6 py-5 text-[11px] font-extrabold uppercase tracking-widest text-on-surface-variant">Etapa actual</th>
+<th class="px-6 py-5 text-[11px] font-extrabold uppercase tracking-widest text-on-surface-variant text-center">Fecha registro</th>
+<th class="px-6 py-5 text-[11px] font-extrabold uppercase tracking-widest text-on-surface-variant">Responsable</th>
+<th class="px-6 py-5 text-[11px] font-extrabold uppercase tracking-widest text-on-surface-variant text-right">Acciones</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low/30 transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary-container text-inverse-primary flex items-center justify-center font-bold text-sm ring-2 ring-white shadow-sm">
+                                    AC
+                                </div>
+<div class="flex flex-col">
+<span class="text-sm font-bold text-on-surface">Alejandro Castro Pineda</span>
+<span class="text-xs text-on-surface-variant">alejandro.castro@email.co</span>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="text-sm font-semibold text-primary">Desarrollador Senior</div>
+<div class="text-[10px] text-on-surface-variant uppercase font-bold mt-0.5">Tecnología</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-col gap-2">
+<div class="flex gap-1.5">
+<div class="w-2.5 h-2.5 rounded-full bg-primary shadow-[0_0_8px_rgba(0,55,94,0.4)]"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-primary shadow-[0_0_8px_rgba(0,55,94,0.4)]"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-primary shadow-[0_0_8px_rgba(0,55,94,0.4)]"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-primary shadow-[0_0_8px_rgba(0,55,94,0.4)]"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-slate-200"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-slate-200"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-slate-200"></div>
+</div>
+<span class="text-[10px] font-bold text-primary-fixed-dim uppercase tracking-tight">Pruebas Técnicas</span>
+</div>
+</td>
+<td class="px-6 py-5 text-center">
+<span class="text-sm font-medium text-on-surface-variant">12/10/2023</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center text-[10px] font-bold">JR</div>
+<span class="text-sm font-medium text-on-surface">Jimena Restrepo</span>
+</div>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="text-xs font-bold text-primary px-4 py-2 rounded-lg border border-primary/20 hover:bg-primary/5 transition-all">Ver perfil</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low/30 transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-bold text-sm ring-2 ring-white shadow-sm">
+                                    MV
+                                </div>
+<div class="flex flex-col">
+<span class="text-sm font-bold text-on-surface">Mariana Valencia Duque</span>
+<span class="text-xs text-on-surface-variant">m.valencia@cloud.net</span>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="text-sm font-semibold text-primary">Analista de Nómina</div>
+<div class="text-[10px] text-on-surface-variant uppercase font-bold mt-0.5">Administración</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-col gap-2">
+<div class="flex gap-1.5">
+<div class="w-2.5 h-2.5 rounded-full bg-primary shadow-[0_0_8px_rgba(0,55,94,0.4)]"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-primary shadow-[0_0_8px_rgba(0,55,94,0.4)]"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-slate-200"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-slate-200"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-slate-200"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-slate-200"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-slate-200"></div>
+</div>
+<span class="text-[10px] font-bold text-primary-fixed-dim uppercase tracking-tight">Entrevista Inicial</span>
+</div>
+</td>
+<td class="px-6 py-5 text-center">
+<span class="text-sm font-medium text-on-surface-variant">15/10/2023</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center text-[10px] font-bold">CH</div>
+<span class="text-sm font-medium text-on-surface">Carlos Herrera</span>
+</div>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="text-xs font-bold text-primary px-4 py-2 rounded-lg border border-primary/20 hover:bg-primary/5 transition-all">Ver perfil</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low/30 transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center font-bold text-sm ring-2 ring-white shadow-sm">
+                                    SR
+                                </div>
+<div class="flex flex-col">
+<span class="text-sm font-bold text-on-surface">Santiago Rodríguez Garcés</span>
+<span class="text-xs text-on-surface-variant">s.rodriguez@domain.com</span>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="text-sm font-semibold text-primary">Gerente de Mercadeo</div>
+<div class="text-[10px] text-on-surface-variant uppercase font-bold mt-0.5">Ventas</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-col gap-2">
+<div class="flex gap-1.5">
+<div class="w-2.5 h-2.5 rounded-full bg-primary shadow-[0_0_8px_rgba(0,55,94,0.4)]"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-primary shadow-[0_0_8px_rgba(0,55,94,0.4)]"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-primary shadow-[0_0_8px_rgba(0,55,94,0.4)]"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-slate-200"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-slate-200"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-slate-200"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-slate-200"></div>
+</div>
+<span class="text-[10px] font-bold text-primary-fixed-dim uppercase tracking-tight">Entrevista Gerencia</span>
+</div>
+</td>
+<td class="px-6 py-5 text-center">
+<span class="text-sm font-medium text-on-surface-variant">18/10/2023</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center text-[10px] font-bold">JR</div>
+<span class="text-sm font-medium text-on-surface">Jimena Restrepo</span>
+</div>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="text-xs font-bold text-primary px-4 py-2 rounded-lg border border-primary/20 hover:bg-primary/5 transition-all">Ver perfil</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low/30 transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-error-container text-on-error-container flex items-center justify-center font-bold text-sm ring-2 ring-white shadow-sm">
+                                    LB
+                                </div>
+<div class="flex flex-col">
+<span class="text-sm font-bold text-on-surface">Luciana Betancur Soto</span>
+<span class="text-xs text-on-surface-variant">lucy.b@consultancy.co</span>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="text-sm font-semibold text-primary">Especialista en Seguridad</div>
+<div class="text-[10px] text-on-surface-variant uppercase font-bold mt-0.5">SST</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-col gap-2">
+<div class="flex gap-1.5">
+<div class="w-2.5 h-2.5 rounded-full bg-primary shadow-[0_0_8px_rgba(0,55,94,0.4)]"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-primary shadow-[0_0_8px_rgba(0,55,94,0.4)]"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-primary shadow-[0_0_8px_rgba(0,55,94,0.4)]"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-primary shadow-[0_0_8px_rgba(0,55,94,0.4)]"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-primary shadow-[0_0_8px_rgba(0,55,94,0.4)]"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-primary shadow-[0_0_8px_rgba(0,55,94,0.4)]"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-slate-200"></div>
+</div>
+<span class="text-[10px] font-bold text-primary-fixed-dim uppercase tracking-tight">Referencias Laborales</span>
+</div>
+</td>
+<td class="px-6 py-5 text-center">
+<span class="text-sm font-medium text-on-surface-variant">20/10/2023</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center text-[10px] font-bold">CH</div>
+<span class="text-sm font-medium text-on-surface">Carlos Herrera</span>
+</div>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="text-xs font-bold text-primary px-4 py-2 rounded-lg border border-primary/20 hover:bg-primary/5 transition-all">Ver perfil</button>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-surface-container-low/30 transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-on-primary-fixed text-primary-fixed flex items-center justify-center font-bold text-sm ring-2 ring-white shadow-sm">
+                                    DM
+                                </div>
+<div class="flex flex-col">
+<span class="text-sm font-bold text-on-surface">Daniel Marín Yepes</span>
+<span class="text-xs text-on-surface-variant">d.marin@estudios.edu.co</span>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="text-sm font-semibold text-primary">Aprendiz Administrativo</div>
+<div class="text-[10px] text-on-surface-variant uppercase font-bold mt-0.5">Administración</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-col gap-2">
+<div class="flex gap-1.5">
+<div class="w-2.5 h-2.5 rounded-full bg-primary shadow-[0_0_8px_rgba(0,55,94,0.4)]"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-slate-200"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-slate-200"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-slate-200"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-slate-200"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-slate-200"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-slate-200"></div>
+</div>
+<span class="text-[10px] font-bold text-primary-fixed-dim uppercase tracking-tight">Preselección</span>
+</div>
+</td>
+<td class="px-6 py-5 text-center">
+<span class="text-sm font-medium text-on-surface-variant">22/10/2023</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center text-[10px] font-bold">JR</div>
+<span class="text-sm font-medium text-on-surface">Jimena Restrepo</span>
+</div>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="text-xs font-bold text-primary px-4 py-2 rounded-lg border border-primary/20 hover:bg-primary/5 transition-all">Ver perfil</button>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- Table Footer / Pagination -->
+<div class="px-6 py-4 bg-surface-container-low/30 border-t border-slate-100 flex justify-between items-center">
+<span class="text-xs font-medium text-on-surface-variant">Mostrando 5 de 24 candidatos encontrados</span>
+<div class="flex items-center gap-2">
+<button class="w-8 h-8 rounded-lg border border-slate-200 flex items-center justify-center text-slate-400 hover:bg-white transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded-lg bg-primary text-white text-xs font-bold">1</button>
+<button class="w-8 h-8 rounded-lg border border-slate-200 text-xs font-bold text-on-surface hover:bg-white transition-colors">2</button>
+<button class="w-8 h-8 rounded-lg border border-slate-200 text-xs font-bold text-on-surface hover:bg-white transition-colors">3</button>
+<button class="w-8 h-8 rounded-lg border border-slate-200 flex items-center justify-center text-slate-400 hover:bg-white transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Secondary Insights / Bento Layout Hint -->
+<div class="grid grid-cols-3 gap-6 mt-10">
+<div class="bg-primary/5 border border-primary/10 p-6 rounded-2xl flex items-center justify-between">
+<div>
+<p class="text-xs font-bold text-primary uppercase tracking-widest opacity-80 mb-1">Tasa de Conversión</p>
+<h3 class="text-2xl font-black text-primary">12.5%</h3>
+</div>
+<div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-primary" data-icon="trending_up">trending_up</span>
+</div>
+</div>
+<div class="bg-secondary/5 border border-secondary/10 p-6 rounded-2xl flex items-center justify-between">
+<div>
+<p class="text-xs font-bold text-secondary uppercase tracking-widest opacity-80 mb-1">Días Promedio Cierre</p>
+<h3 class="text-2xl font-black text-secondary">24 Días</h3>
+</div>
+<div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-secondary" data-icon="schedule">schedule</span>
+</div>
+</div>
+<div class="bg-on-tertiary-container/5 border border-on-tertiary-container/10 p-6 rounded-2xl flex items-center justify-between">
+<div>
+<p class="text-xs font-bold text-on-tertiary-fixed-variant uppercase tracking-widest opacity-80 mb-1">Cargos Abiertos</p>
+<h3 class="text-2xl font-black text-on-tertiary-fixed-variant">8 Vacantes</h3>
+</div>
+<div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-on-tertiary-fixed-variant" data-icon="work_outline">work_outline</span>
+</div>
+</div>
+</div>
+</main>
+</body></html>

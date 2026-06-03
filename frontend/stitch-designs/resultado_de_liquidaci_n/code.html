@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Resultado de Liquidación - SGRH</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "surface-container": "#eeeeee",
+                "primary-fixed": "#d1e4ff",
+                "inverse-primary": "#a0cafc",
+                "surface-container-high": "#e8e8e8",
+                "on-background": "#1a1c1c",
+                "error-container": "#ffdad6",
+                "surface-variant": "#e2e2e2",
+                "surface": "#f9f9f9",
+                "tertiary-container": "#6a4300",
+                "primary-container": "#1f4e79",
+                "tertiary": "#4c2e00",
+                "tertiary-fixed": "#ffddb5",
+                "secondary-fixed-dim": "#b8c8de",
+                "primary": "#00375e",
+                "on-primary": "#ffffff",
+                "on-tertiary": "#ffffff",
+                "outline": "#72777f",
+                "on-primary-fixed": "#001d35",
+                "secondary-container": "#d1e1f7",
+                "inverse-on-surface": "#f1f1f1",
+                "error": "#ba1a1a",
+                "surface-container-highest": "#e2e2e2",
+                "on-secondary-container": "#556477",
+                "secondary-fixed": "#d4e4fa",
+                "on-tertiary-fixed-variant": "#643f00",
+                "outline-variant": "#c2c7d0",
+                "on-secondary-fixed": "#0d1d2d",
+                "on-secondary": "#ffffff",
+                "on-tertiary-fixed": "#2a1800",
+                "on-primary-container": "#95bff1",
+                "primary-fixed-dim": "#a0cafc",
+                "background": "#f9f9f9",
+                "on-tertiary-container": "#e9b268",
+                "on-error": "#ffffff",
+                "on-primary-fixed-variant": "#184974",
+                "secondary": "#516072",
+                "on-surface": "#1a1c1c",
+                "surface-container-low": "#f3f3f3",
+                "surface-bright": "#f9f9f9",
+                "surface-container-lowest": "#ffffff",
+                "on-secondary-fixed-variant": "#39485a",
+                "surface-dim": "#dadada",
+                "on-error-container": "#93000a",
+                "inverse-surface": "#2f3131",
+                "tertiary-fixed-dim": "#f5bc72",
+                "on-surface-variant": "#42474f",
+                "surface-tint": "#35618d"
+              },
+              fontFamily: {
+                "headline": ["Inter"],
+                "body": ["Inter"],
+                "label": ["Inter"]
+              },
+              borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+            },
+          },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f9f9f9; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .status-orb { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 8px; }
+        .sidebar-active { position: relative; }
+        .sidebar-active::before { content: ''; position: absolute; left: 0; width: 4px; height: 24px; background-color: #a0cafc; border-radius: 0 4px 4px 0; }
+    </style>
+</head>
+<body class="text-on-surface">
+<!-- SideNavBar Anchor -->
+<aside class="fixed left-0 top-0 h-full w-[220px] bg-[#1F4E79] dark:bg-[#00375E] flex flex-col py-6 shadow-2xl shadow-[#00375E]/20 z-50">
+<div class="px-6 mb-10">
+<h1 class="text-2xl font-bold tracking-tight text-white">SGRH</h1>
+<p class="text-[10px] uppercase tracking-widest text-white/50 font-semibold">Gestión Humana</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-white/70 hover:text-white transition-colors hover:bg-[#184974] dark:hover:bg-[#002B4A]" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-medium text-sm tracking-wide">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-white/70 hover:text-white transition-colors hover:bg-[#184974] dark:hover:bg-[#002B4A]" href="#">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+<span class="font-medium text-sm tracking-wide">Empleados</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-white/70 hover:text-white transition-colors hover:bg-[#184974] dark:hover:bg-[#002B4A]" href="#">
+<span class="material-symbols-outlined" data-icon="person_search">person_search</span>
+<span class="font-medium text-sm tracking-wide">Selección</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-white relative sidebar-active bg-[#184974]" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-medium text-sm tracking-wide">Nómina</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-white/70 hover:text-white transition-colors hover:bg-[#184974] dark:hover:bg-[#002B4A]" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-medium text-sm tracking-wide">Liquidaciones</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-white/70 hover:text-white transition-colors hover:bg-[#184974] dark:hover:bg-[#002B4A]" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="font-medium text-sm tracking-wide">PILA</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-white/70 hover:text-white transition-colors hover:bg-[#184974] dark:hover:bg-[#002B4A]" href="#">
+<span class="material-symbols-outlined" data-icon="verified">verified</span>
+<span class="font-medium text-sm tracking-wide">Certificaciones</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-white/70 hover:text-white transition-colors hover:bg-[#184974] dark:hover:bg-[#002B4A]" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-medium text-sm tracking-wide">Configuración</span>
+</a>
+</nav>
+<div class="px-4 mt-auto">
+<div class="flex items-center gap-3 p-3 bg-white/5 rounded-lg">
+<div class="w-8 h-8 rounded bg-primary-fixed flex items-center justify-center text-primary font-bold text-xs">AD</div>
+<div class="overflow-hidden">
+<p class="text-xs font-semibold text-white truncate">Admin User</p>
+<p class="text-[10px] text-white/50 truncate">admin@sgrh.com</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Shell -->
+<main class="ml-[220px] min-h-screen flex flex-col relative">
+<!-- TopNavBar Anchor -->
+<header class="h-16 flex items-center justify-between px-10 sticky top-0 bg-white/70 backdrop-blur-md z-40 border-b border-outline-variant/10">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer" data-icon="search">search</span>
+<input class="bg-transparent border-none text-sm focus:ring-0 w-64 placeholder:text-on-surface-variant/50" placeholder="Buscar empleados o registros..." type="text"/>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4 border-r border-outline-variant/30 pr-6">
+<button class="relative hover:bg-surface-container-low p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border-2 border-white"></span>
+</button>
+<button class="hover:bg-surface-container-low p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="help_outline">help_outline</span>
+</button>
+</div>
+<div class="flex items-center gap-3">
+<div class="text-right">
+<p class="text-[11px] font-bold text-primary uppercase tracking-tighter">Plan Premium</p>
+<p class="text-xs text-on-surface-variant">Sede Bogotá</p>
+</div>
+<img alt="Foto de perfil del administrador" class="w-8 h-8 rounded-lg object-cover shadow-sm" data-alt="professional portrait of a confident middle aged male corporate executive with neat hair and formal suit in office setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCt8Zz4jPoW5--ZU9y56yxvcM6QCmWTEIYhDDAvVyS6z03H0HDChudTO94q0GUhGVI0q2sEw430Lj6BwbsJBmVib3v9wugjE9DRprE6QGx7IuFp4h0H-fTfIJ6msKZA34-8HMGoRFw3TBZSiABVAUHjqfXQHEza4Ul8lQjVm9xDksnoyjxubdtMRV-gDMD9HHxfgdPso3lYtKY0BWRypKLOXk_-xvK-JhKLYNo7Hd71UZ3o10qGQgGOz4djkuFLGKNJos9lnSyfXBE"/>
+</div>
+</div>
+</header>
+<!-- Content Canvas -->
+<div class="p-10 pb-32 flex-1">
+<!-- Header Section -->
+<div class="flex justify-between items-end mb-10">
+<div>
+<nav class="flex items-center gap-2 text-xs text-on-surface-variant mb-2">
+<span>Nómina</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="chevron_right">chevron_right</span>
+<span class="font-semibold text-primary">Liquidación</span>
+</nav>
+<h2 class="text-3xl font-extrabold tracking-tight text-on-surface">Resultado — Enero 2025 Q1</h2>
+<p class="text-on-surface-variant mt-1">Corte de nómina: 01 Ene - 15 Ene 2025</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 border border-outline-variant/30 text-sm font-semibold rounded-lg hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="download">download</span>
+                        Exportar Reporte
+                    </button>
+<button class="flex items-center gap-2 px-4 py-2 border border-outline-variant/30 text-sm font-semibold rounded-lg hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="print">print</span>
+</button>
+</div>
+</div>
+<!-- Bento Grid Summary Cards -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/10 shadow-sm">
+<p class="text-xs font-bold text-on-surface-variant/60 uppercase tracking-widest mb-4">Total empleados</p>
+<div class="flex items-center gap-4">
+<span class="text-4xl font-extrabold text-on-surface">18</span>
+<div class="flex items-center text-xs text-green-600 bg-green-50 px-2 py-1 rounded">
+<span class="material-symbols-outlined text-[14px] mr-1" data-icon="trending_up">trending_up</span>
+                            +2
+                        </div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/10 shadow-sm">
+<p class="text-xs font-bold text-on-surface-variant/60 uppercase tracking-widest mb-4">Total devengado</p>
+<p class="text-3xl font-extrabold text-on-surface tracking-tight">$42.150.000</p>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/10 shadow-sm">
+<p class="text-xs font-bold text-on-surface-variant/60 uppercase tracking-widest mb-4">Total deducciones</p>
+<p class="text-3xl font-extrabold text-error tracking-tight">$7.330.000</p>
+</div>
+<!-- Highlight Card -->
+<div class="bg-[#1F4E79] p-6 rounded-xl shadow-xl shadow-[#1F4E79]/20 flex flex-col justify-between">
+<p class="text-xs font-bold text-on-primary-container uppercase tracking-widest mb-2">Total neto a pagar</p>
+<p class="text-4xl font-extrabold text-white tracking-tighter">$34.820.000</p>
+<div class="mt-4 pt-4 border-t border-white/10">
+<p class="text-[10px] text-white/60">Afectación presupuestal: 84%</p>
+</div>
+</div>
+</div>
+<!-- Data Table Section -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/10 overflow-hidden">
+<div class="p-6 border-b border-outline-variant/10 flex justify-between items-center">
+<h3 class="text-lg font-bold text-on-surface">Detalle de Colaboradores</h3>
+<div class="flex items-center gap-4">
+<div class="flex bg-surface-container-low rounded-lg p-1">
+<button class="px-3 py-1.5 text-xs font-bold bg-white shadow-sm rounded-md text-primary">Todos</button>
+<button class="px-3 py-1.5 text-xs font-semibold text-on-surface-variant">Pendientes</button>
+<button class="px-3 py-1.5 text-xs font-semibold text-on-surface-variant">Revisados</button>
+</div>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-low/50">
+<th class="px-8 py-5 text-[11px] font-bold text-on-surface-variant/70 uppercase tracking-wider">Nombre</th>
+<th class="px-6 py-5 text-[11px] font-bold text-on-surface-variant/70 uppercase tracking-wider text-center">Días</th>
+<th class="px-6 py-5 text-[11px] font-bold text-on-surface-variant/70 uppercase tracking-wider">Devengado</th>
+<th class="px-6 py-5 text-[11px] font-bold text-on-surface-variant/70 uppercase tracking-wider">Deducido</th>
+<th class="px-6 py-5 text-[11px] font-bold text-on-surface-variant/70 uppercase tracking-wider">Neto a pagar</th>
+<th class="px-6 py-5 text-[11px] font-bold text-on-surface-variant/70 uppercase tracking-wider">Estado</th>
+<th class="px-8 py-5 text-[11px] font-bold text-on-surface-variant/70 uppercase tracking-wider text-right">Acciones</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low/30 transition-colors">
+<td class="px-8 py-6">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-primary/5 flex items-center justify-center text-primary font-bold text-xs">AM</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Andrés Mendoza</p>
+<p class="text-xs text-on-surface-variant">Director de Tecnología</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-6 text-center text-sm text-on-surface-variant">15</td>
+<td class="px-6 py-6 text-sm text-on-surface font-medium">$8.500.000</td>
+<td class="px-6 py-6 text-sm text-error font-medium">$1.450.000</td>
+<td class="px-6 py-6 text-sm font-extrabold text-primary">$7.050.000</td>
+<td class="px-6 py-6">
+<div class="flex items-center text-xs font-semibold text-green-700">
+<span class="status-orb bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.4)]"></span>
+                                        Revisado
+                                    </div>
+</td>
+<td class="px-8 py-6 text-right">
+<button class="p-2 hover:bg-primary-fixed/30 rounded-lg text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="bg-surface-container-low/20 hover:bg-surface-container-low/30 transition-colors">
+<td class="px-8 py-6">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-primary/5 flex items-center justify-center text-primary font-bold text-xs">CP</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Carolina Patiño</p>
+<p class="text-xs text-on-surface-variant">Gte. Marketing</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-6 text-center text-sm text-on-surface-variant">15</td>
+<td class="px-6 py-6 text-sm text-on-surface font-medium">$6.200.000</td>
+<td class="px-6 py-6 text-sm text-error font-medium">$980.000</td>
+<td class="px-6 py-6 text-sm font-extrabold text-primary">$5.220.000</td>
+<td class="px-6 py-6">
+<div class="flex items-center text-xs font-semibold text-green-700">
+<span class="status-orb bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.4)]"></span>
+                                        Revisado
+                                    </div>
+</td>
+<td class="px-8 py-6 text-right">
+<button class="p-2 hover:bg-primary-fixed/30 rounded-lg text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low/30 transition-colors">
+<td class="px-8 py-6">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-primary/5 flex items-center justify-center text-primary font-bold text-xs">JR</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Julián Restrepo</p>
+<p class="text-xs text-on-surface-variant">Analista Senior</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-6 text-center text-sm text-on-surface-variant">12</td>
+<td class="px-6 py-6 text-sm text-on-surface font-medium">$4.500.000</td>
+<td class="px-6 py-6 text-sm text-error font-medium">$720.000</td>
+<td class="px-6 py-6 text-sm font-extrabold text-primary">$3.780.000</td>
+<td class="px-6 py-6">
+<div class="flex items-center text-xs font-semibold text-on-surface-variant">
+<span class="status-orb bg-slate-300"></span>
+                                        Pendiente
+                                    </div>
+</td>
+<td class="px-8 py-6 text-right">
+<button class="p-2 hover:bg-primary-fixed/30 rounded-lg text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="bg-surface-container-low/20 hover:bg-surface-container-low/30 transition-colors">
+<td class="px-8 py-6">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-primary/5 flex items-center justify-center text-primary font-bold text-xs">DA</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Daniela Arias</p>
+<p class="text-xs text-on-surface-variant">Contadora</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-6 text-center text-sm text-on-surface-variant">15</td>
+<td class="px-6 py-6 text-sm text-on-surface font-medium">$5.100.000</td>
+<td class="px-6 py-6 text-sm text-error font-medium">$840.000</td>
+<td class="px-6 py-6 text-sm font-extrabold text-primary">$4.260.000</td>
+<td class="px-6 py-6">
+<div class="flex items-center text-xs font-semibold text-green-700">
+<span class="status-orb bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.4)]"></span>
+                                        Revisado
+                                    </div>
+</td>
+<td class="px-8 py-6 text-right">
+<button class="p-2 hover:bg-primary-fixed/30 rounded-lg text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</button>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-surface-container-low/30 transition-colors">
+<td class="px-8 py-6">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-primary/5 flex items-center justify-center text-primary font-bold text-xs">FG</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Felipe Gómez</p>
+<p class="text-xs text-on-surface-variant">Desarrollador</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-6 text-center text-sm text-on-surface-variant">15</td>
+<td class="px-6 py-6 text-sm text-on-surface font-medium">$7.800.000</td>
+<td class="px-6 py-6 text-sm text-error font-medium">$1.220.000</td>
+<td class="px-6 py-6 text-sm font-extrabold text-primary">$6.580.000</td>
+<td class="px-6 py-6">
+<div class="flex items-center text-xs font-semibold text-on-surface-variant">
+<span class="status-orb bg-slate-300"></span>
+                                        Pendiente
+                                    </div>
+</td>
+<td class="px-8 py-6 text-right">
+<button class="p-2 hover:bg-primary-fixed/30 rounded-lg text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</button>
+</td>
+</tr>
+<!-- Row 6 -->
+<tr class="bg-surface-container-low/20 hover:bg-surface-container-low/30 transition-colors">
+<td class="px-8 py-6">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-primary/5 flex items-center justify-center text-primary font-bold text-xs">SC</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Sofía Cano</p>
+<p class="text-xs text-on-surface-variant">Diseñadora UX</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-6 text-center text-sm text-on-surface-variant">15</td>
+<td class="px-6 py-6 text-sm text-on-surface font-medium">$4.500.000</td>
+<td class="px-6 py-6 text-sm text-error font-medium">$570.000</td>
+<td class="px-6 py-6 text-sm font-extrabold text-primary">$3.930.000</td>
+<td class="px-6 py-6">
+<div class="flex items-center text-xs font-semibold text-green-700">
+<span class="status-orb bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.4)]"></span>
+                                        Revisado
+                                    </div>
+</td>
+<td class="px-8 py-6 text-right">
+<button class="p-2 hover:bg-primary-fixed/30 rounded-lg text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-6 border-t border-outline-variant/10 flex items-center justify-between">
+<p class="text-xs text-on-surface-variant">Mostrando 6 de 18 colaboradores</p>
+<div class="flex gap-2">
+<button class="px-3 py-1 text-xs font-bold border border-outline-variant/30 rounded-md disabled:opacity-50" disabled="">Anterior</button>
+<button class="px-3 py-1 text-xs font-bold bg-primary text-white rounded-md">1</button>
+<button class="px-3 py-1 text-xs font-bold border border-outline-variant/30 rounded-md">2</button>
+<button class="px-3 py-1 text-xs font-bold border border-outline-variant/30 rounded-md">3</button>
+<button class="px-3 py-1 text-xs font-bold border border-outline-variant/30 rounded-md">Siguiente</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Sticky Footer Bar -->
+<footer class="fixed bottom-0 right-0 w-[calc(100%-220px)] h-20 bg-white/80 backdrop-blur-xl border-t border-outline-variant/20 flex items-center justify-between px-10 z-40">
+<div class="flex items-center gap-10">
+<div class="flex flex-col">
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Total a dispersar</span>
+<span class="text-xl font-black text-primary">$34.820.000</span>
+</div>
+<div class="flex items-center gap-2 text-xs text-on-surface-variant bg-surface-container-low px-4 py-2 rounded-full">
+<span class="material-symbols-outlined text-[16px] text-primary" data-icon="verified_user">verified_user</span>
+                    Cálculos verificados por el sistema
+                </div>
+</div>
+<div class="flex gap-4">
+<button class="px-6 py-3 text-sm font-bold text-primary hover:bg-primary-fixed/20 rounded-lg transition-colors">
+                    Guardar Borrador
+                </button>
+<button class="px-8 py-3 text-sm font-bold text-white bg-gradient-to-br from-[#00375e] to-[#1f4e79] rounded-lg shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all">
+                    Enviar a aprobación
+                </button>
+</div>
+</footer>
+</main>
+</body></html>
