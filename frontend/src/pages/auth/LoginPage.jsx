@@ -42,7 +42,7 @@ export default function LoginPage() {
               corporate_fare
             </span>
           </div>
-          <h1 className="text-white text-5xl font-extrabold tracking-tight mb-4">SGRH</h1>
+          <h1 className="text-white text-5xl font-extrabold tracking-tight mb-4">TalentOS</h1>
           <p className="text-white/80 text-xl font-medium max-w-md leading-relaxed">
             Sistema de Gestión de Recursos Humanos
           </p>
@@ -69,7 +69,7 @@ export default function LoginPage() {
               corporate_fare
             </span>
             <div>
-              <h2 className="text-primary font-bold text-xl leading-none">SGRH</h2>
+              <h2 className="text-primary font-bold text-xl leading-none">TalentOS</h2>
               <p className="text-[10px] text-on-surface-variant uppercase tracking-wider">
                 Gestión de RRHH
               </p>
@@ -185,7 +185,7 @@ export default function LoginPage() {
           <div className="mt-20 flex flex-col gap-6">
             <div className="h-px w-full bg-outline-variant/20" />
             <div className="flex justify-between items-center text-[10px] text-outline font-medium uppercase tracking-widest">
-              <span>SGRH © 2025</span>
+              <span>TalentOS © 2025</span>
               <div className="flex gap-4">
                 <a href="#" className="hover:text-primary transition-colors">
                   Soporte

@@ -11,6 +11,9 @@ import DashboardPage from '../pages/dashboard/DashboardPage'
 // Usuarios
 import UsuariosPage from '../pages/usuarios/UsuariosPage'
 
+// Admin
+import AreasPage from '../pages/admin/AreasPage'
+
 // Empleados
 import EmpleadosPage from '../pages/empleados/EmpleadosPage'
 import EmpleadoPerfilPage from '../pages/empleados/EmpleadoPerfilPage'
@@ -82,6 +85,7 @@ export default function AppRouter() {
 
       <Route path="/dashboard" element={<AppLayout><DashboardPage /></AppLayout>} />
       <Route path="/usuarios" element={<AppLayout><UsuariosPage /></AppLayout>} />
+      <Route path="/admin/areas" element={<AppLayout><AreasPage /></AppLayout>} />
 
       <Route path="/empleados" element={<AppLayout><EmpleadosPage /></AppLayout>} />
       <Route path="/empleados/nuevo" element={<AppLayout><EmpleadoNuevoPage /></AppLayout>} />

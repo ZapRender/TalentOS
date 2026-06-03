@@ -10,6 +10,7 @@ $router->get('/payroll/periodos',              fn($p) => NominaController::lista
 $router->get('/payroll/periodos/:id',          fn($p) => NominaController::getPeriodo($p),     $jwt);
 $router->post('/payroll/periodos',             fn($p) => NominaController::crearPeriodo($p),   $jwt);
 $router->post('/payroll/periodos/:id/liquidar',fn($p) => NominaController::liquidar($p),       $jwt);
+$router->get('/payroll/periodos/:id/resultado', fn($p) => NominaController::getResultado($p),  $jwt);
 $router->post('/payroll/periodos/:id/aprobar', fn($p) => NominaController::aprobar($p),        $gerente);
 $router->post('/payroll/periodos/:id/enviar-desp', fn($p) => NominaController::enviarDesprendibles($p), $jwt);
 

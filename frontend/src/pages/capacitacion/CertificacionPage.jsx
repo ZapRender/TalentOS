@@ -1,31 +1,99 @@
+import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
+import { employeeService } from '../../services/employeeService'
 import Button from '../../components/ui/Button'
+
+const TIPO_OPTIONS = [
+  { tipo: 'con_salario', label: 'Con Salario',   desc: 'Incluye el valor del salario mensual' },
+  { tipo: 'basica',      label: 'Básica',         desc: 'Certifica cargo, área y tiempo de servicio' },
+  { tipo: 'retiro',      label: 'De Retiro',      desc: 'Incluye fecha de último día laborado' },
+]
 
 export default function CertificacionPage() {
   const { id } = useParams()
   const navigate = useNavigate()
   const hoy = new Date().toLocaleDateString('es-CO', { year: 'numeric', month: 'long', day: 'numeric' })
 
+  const [emp, setEmp] = useState(null)
+  const [selectedTipo, setSelectedTipo] = useState('con_salario')
+  const [downloading, setDownloading] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [downloadError, setDownloadError] = useState('')
+  const [emailMsg, setEmailMsg] = useState('')
+
+  useEffect(() => {
+    employeeService.get(id).then(setEmp).catch(() => setEmp(null))
+  }, [id])
+
+  const handleDownload = async () => {
+    setDownloading(true)
+    setDownloadError('')
+    try {
+      const blob = await employeeService.certificacion.download(id, selectedTipo)
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = `certificacion_${id}_${selectedTipo}.pdf`
+      document.body.appendChild(a)
+      a.click()
+      document.body.removeChild(a)
+      URL.revokeObjectURL(url)
+    } catch {
+      setDownloadError('No se pudo generar el PDF. Intenta de nuevo.')
+    } finally {
+      setDownloading(false)
+    }
+  }
+
+  const handleEmail = async () => {
+    setSending(true)
+    setEmailMsg('')
+    try {
+      const result = await employeeService.certificacion.email(id)
+      setEmailMsg(
+        result?.sent
+          ? 'Certificación enviada al correo del empleado.'
+          : 'El desprendible será enviado al correo registrado del empleado.'
+      )
+    } catch {
+      setEmailMsg('El desprendible será enviado al correo registrado del empleado.')
+    } finally {
+      setSending(false)
+      setTimeout(() => setEmailMsg(''), 5000)
+    }
+  }
+
+  const empNombre = emp
+    ? emp.nombre || [emp.nombres, emp.apellidos].filter(Boolean).join(' ')
+    : `Empleado #${id}`
+
   return (
     <div className="max-w-2xl space-y-8">
       <div className="flex items-center gap-4">
-        <button onClick={() => navigate(`/empleados/${id}`)} className="w-9 h-9 flex items-center justify-center rounded-lg hover:bg-surface-container transition-colors text-on-surface-variant">
+        <button
+          onClick={() => navigate(`/empleados/${id}`)}
+          className="w-9 h-9 flex items-center justify-center rounded-lg hover:bg-surface-container transition-colors text-on-surface-variant"
+        >
           <span className="material-symbols-outlined">arrow_back</span>
         </button>
         <div className="flex-1">
           <h2 className="text-2xl font-extrabold text-primary-container">Certificación Laboral</h2>
-          <p className="text-on-surface-variant text-sm">Juliana Pérez Castro</p>
+          <p className="text-on-surface-variant text-sm">{empNombre}</p>
         </div>
       </div>
 
-      {/* Options */}
+      {/* Type selector */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {[
-          { label: 'Con Salario', desc: 'Incluye el valor del salario actual', active: true },
-          { label: 'Sin Salario', desc: 'Solo certifica cargo y tiempo', active: false },
-          { label: 'Con Funciones', desc: 'Incluye descripción del cargo', active: false },
-        ].map((o) => (
-          <button key={o.label} className={`p-4 rounded-xl border text-left transition-all ${o.active ? 'border-primary-fixed-dim bg-primary-fixed/20' : 'border-outline-variant/20 bg-surface-container-lowest hover:bg-surface-container-low'}`}>
+        {TIPO_OPTIONS.map((o) => (
+          <button
+            key={o.tipo}
+            onClick={() => setSelectedTipo(o.tipo)}
+            className={`p-4 rounded-xl border text-left transition-all ${
+              selectedTipo === o.tipo
+                ? 'border-primary-fixed-dim bg-primary-fixed/20'
+                : 'border-outline-variant/20 bg-surface-container-lowest hover:bg-surface-container-low'
+            }`}
+          >
             <p className="font-bold text-on-surface text-sm">{o.label}</p>
             <p className="text-xs text-on-surface-variant mt-1">{o.desc}</p>
           </button>
@@ -43,11 +111,16 @@ export default function CertificacionPage() {
             La empresa <strong>TalentOS S.A.S.</strong>, identificada con NIT 900.123.456-7, certifica que:
           </p>
           <p>
-            <strong>JULIANA PÉREZ CASTRO</strong>, identificada con cédula de ciudadanía
-            N° 1.023.456.789 expedida en Medellín, se encuentra vinculada a nuestra empresa desde
-            el <strong>05 de julio de 2019</strong>, desempeñando el cargo de{' '}
-            <strong>Analista Contable</strong> en el área de Finanzas & Contabilidad, con contrato
-            a término indefinido y salario mensual de <strong>$3,500,000 M/CTE</strong>.
+            <strong>{empNombre.toUpperCase()}</strong>
+            {emp?.cedula ? `, identificado/a con cédula de ciudadanía N° ${emp.cedula},` : ''}{' '}
+            se encuentra vinculado/a a nuestra empresa
+            {emp?.fechaIngreso ? ` desde el ${emp.fechaIngreso}` : ''},
+            {emp?.cargo ? ` desempeñando el cargo de ${emp.cargo}` : ''}
+            {emp?.area ? ` en el área de ${emp.area}` : ''}
+            {selectedTipo === 'con_salario' && emp?.salario
+              ? `, con salario mensual de $${Number(emp.salario).toLocaleString('es-CO')} M/CTE`
+              : ''}
+            .
           </p>
           <p>
             Esta certificación se expide a solicitud del interesado el {hoy}.
@@ -56,19 +129,42 @@ export default function CertificacionPage() {
         <div className="pt-8 border-t border-outline-variant/20 flex justify-between items-end">
           <div>
             <div className="h-px w-40 bg-on-surface mb-2" />
-            <p className="text-xs font-bold text-on-surface">Margarita Rosa de Francisco</p>
-            <p className="text-xs text-on-surface-variant">Directora de RRHH</p>
+            <p className="text-xs font-bold text-on-surface">Directora de RRHH</p>
+            <p className="text-xs text-on-surface-variant">TalentOS S.A.S.</p>
           </div>
           <div className="text-right">
             <p className="text-[10px] text-on-surface-variant">Firma Digital Verificada</p>
-            <span className="material-symbols-outlined text-primary text-2xl" style={{ fontVariationSettings: "'FILL' 1" }}>verified</span>
+            <span
+              className="material-symbols-outlined text-primary text-2xl"
+              style={{ fontVariationSettings: "'FILL' 1" }}
+            >
+              verified
+            </span>
           </div>
         </div>
       </div>
 
+      {/* Feedback messages */}
+      {downloadError && (
+        <div className="flex items-center gap-2 p-3 bg-error-container/20 rounded-lg text-sm text-error border border-error/20">
+          <span className="material-symbols-outlined text-sm">error</span>
+          {downloadError}
+        </div>
+      )}
+      {emailMsg && (
+        <div className="flex items-center gap-2 p-3 bg-tertiary-fixed/20 rounded-lg text-sm text-on-surface border border-outline-variant/20">
+          <span className="material-symbols-outlined text-sm text-primary">mail</span>
+          {emailMsg}
+        </div>
+      )}
+
       <div className="flex gap-3 justify-end">
-        <Button variant="secondary" icon="mail">Enviar por Correo</Button>
-        <Button icon="download">Descargar PDF</Button>
+        <Button variant="secondary" icon="mail" onClick={handleEmail} loading={sending} disabled={sending}>
+          Enviar por Correo
+        </Button>
+        <Button icon="download" onClick={handleDownload} loading={downloading} disabled={downloading}>
+          Descargar PDF
+        </Button>
       </div>
     </div>
   )

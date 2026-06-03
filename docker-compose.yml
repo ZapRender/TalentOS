@@ -33,7 +33,7 @@ services:
       - PORT=3000
     depends_on:
       - auth-service
-      # - employee-service
+      - employee-service
       - payroll-service
       - training-service
     networks:
@@ -60,28 +60,28 @@ services:
     restart: unless-stopped
 
   # ── EMPLOYEE SERVICE ──────────────────────────────────────────
-  #employee-service:
-   # build:
-    #  context: ./services/employee-service
-     # dockerfile: Dockerfile
-    #container_name: talentos-employee
-    #ports:
-     # - "${EMPLOYEE_PORT:-8080}:8080"
-    #env_file: .env
-    #environment:
-     # - SPRING_DATASOURCE_URL=jdbc:postgresql://${EMPLOYEE_DB_HOST}:${EMPLOYEE_DB_PORT}/${EMPLOYEE_DB_NAME}
-      #- SPRING_DATASOURCE_USERNAME=${EMPLOYEE_DB_USER}
-      #- SPRING_DATASOURCE_PASSWORD=${EMPLOYEE_DB_PASSWORD}
-      #- SPRING_JPA_HIBERNATE_DDL_AUTO=update
-      #- JWT_SECRET=${JWT_SECRET}
-    #volumes:
-     # - archivos-hv:/app/uploads
-    #depends_on:
-     # employee-db:
-      #  condition: service_healthy
-    #networks:
-     # - talentos-net
-    #restart: unless-stopped
+  employee-service:
+    build:
+      context: ./services/employee-service
+      dockerfile: Dockerfile
+    container_name: talentos-employee
+    ports:
+      - "${EMPLOYEE_PORT:-8080}:8080"
+    env_file: .env
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://${EMPLOYEE_DB_HOST}:${EMPLOYEE_DB_PORT}/${EMPLOYEE_DB_NAME}
+      - SPRING_DATASOURCE_USERNAME=${EMPLOYEE_DB_USER}
+      - SPRING_DATASOURCE_PASSWORD=${EMPLOYEE_DB_PASSWORD}
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - JWT_SECRET=${JWT_SECRET}
+    volumes:
+      - archivos-hv:/app/uploads
+    depends_on:
+      employee-db:
+        condition: service_healthy
+    networks:
+      - talentos-net
+    restart: unless-stopped
 
   # ── PAYROLL SERVICE ───────────────────────────────────────────
   payroll-service:
@@ -141,24 +141,24 @@ services:
       - talentos-net
     restart: unless-stopped
 
-  # employee-db:
-  #   image: postgres:16-alpine
-  #   container_name: talentos-employee-db
-  #   environment:
-  #     POSTGRES_DB: ${EMPLOYEE_DB_NAME:-talentos_employee}
-  #     POSTGRES_USER: ${EMPLOYEE_DB_USER:-postgres}
-  #     POSTGRES_PASSWORD: ${EMPLOYEE_DB_PASSWORD}
-  #   volumes:
-  #     - employee-db-data:/var/lib/postgresql/data
-  #     - ./db-scripts/employee-db.sql:/docker-entrypoint-initdb.d/init.sql
-  #   healthcheck:
-  #     test: ["CMD-SHELL", "pg_isready -U ${EMPLOYEE_DB_USER:-postgres}"]
-  #     interval: 10s
-  #     timeout: 5s
-  #     retries: 5
-  #   networks:
-  #     - talentos-net
-  #   restart: unless-stopped
+  employee-db:
+    image: postgres:16-alpine
+    container_name: talentos-employee-db
+    environment:
+      POSTGRES_DB: ${EMPLOYEE_DB_NAME:-talentos_employee}
+      POSTGRES_USER: ${EMPLOYEE_DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${EMPLOYEE_DB_PASSWORD}
+    volumes:
+      - employee-db-data:/var/lib/postgresql/data
+      - ./db-scripts/employee-db.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${EMPLOYEE_DB_USER:-postgres}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - talentos-net
+    restart: unless-stopped
 
   payroll-db:
     image: mysql:8

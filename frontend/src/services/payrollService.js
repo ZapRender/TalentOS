@@ -7,9 +7,11 @@ export const payrollService = {
     list:       ()           => api.get('/api/payroll/periodos').then(unwrap),
     get:        (id)         => api.get(`/api/payroll/periodos/${id}`).then(unwrap),
     create:     (body)       => api.post('/api/payroll/periodos', body).then(unwrap),
-    liquidar:   (id)         => api.post(`/api/payroll/periodos/${id}/liquidar`).then(unwrap),
-    aprobar:    (id, body)   => api.post(`/api/payroll/periodos/${id}/aprobar`, body).then(unwrap),
-    enviarDesp: (id)         => api.post(`/api/payroll/periodos/${id}/enviar-desp`).then(unwrap),
+    resultado:       (id)         => api.get(`/api/payroll/periodos/${id}/resultado`).then(unwrap),
+    liquidar:        (id)         => api.post(`/api/payroll/periodos/${id}/liquidar`).then(unwrap),
+    enviarAprobacion:(id)         => api.post(`/api/payroll/periodos/${id}/enviar-aprobacion`).then(unwrap),
+    aprobar:         (id, body)   => api.post(`/api/payroll/periodos/${id}/aprobar`, body).then(unwrap),
+    enviarDesp:      (id)         => api.post(`/api/payroll/periodos/${id}/enviar-desp`).then(unwrap),
   },
 
   novedades: {
@@ -40,6 +42,7 @@ export const payrollService = {
   },
 
   nomina: {
+    resultado:    (periodoId)              => api.get(`/api/payroll/nomina/${periodoId}/resultado`).then(unwrap),
     // Devuelven archivos — no se unwrapean
     excel:        (periodoId)              => api.get(`/api/payroll/nomina/${periodoId}/excel`, { responseType: 'blob' }).then((r) => r.data),
     desprendible: (periodoId, empleadoId)  => api.get(`/api/payroll/nomina/${periodoId}/desprendible/${empleadoId}`, { responseType: 'blob' }).then((r) => r.data),

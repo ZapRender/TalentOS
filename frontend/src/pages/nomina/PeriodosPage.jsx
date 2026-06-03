@@ -1,13 +1,99 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Button from '../../components/ui/Button'
-import StatusOrb from '../../components/ui/StatusOrb'
 import Modal from '../../components/ui/Modal'
 import Input from '../../components/ui/Input'
 import { payrollService } from '../../services/payrollService'
+import { useAuth } from '../../context/AuthContext'
+
+const MESES = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic']
+
+const ESTADO_BADGE = {
+  abierto:              { label: 'Abierto',      cls: 'bg-amber-100 text-amber-700' },
+  liquidado:            { label: 'Liquidado',    cls: 'bg-blue-100 text-blue-700' },
+  pendiente_aprobacion: { label: 'Pend. Aprob.', cls: 'bg-yellow-100 text-yellow-700' },
+  aprobado:             { label: 'Aprobado',     cls: 'bg-emerald-100 text-emerald-700' },
+  pagado:               { label: 'Pagado',       cls: 'bg-emerald-100 text-emerald-700' },
+}
+
+const fmtCOP = (n) =>
+  new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 }).format(n)
+
+function fmtShortDate(d) {
+  if (!d) return '—'
+  try { const [, m, day] = d.split('-'); return `${day}/${m}` } catch { return d }
+}
+
+function periodoLabel(p) {
+  const mes = MESES[(p.mes || 1) - 1] ?? '?'
+  const q = p.quincena
+  const qLabel = (q === 1 || q === '1') ? 'Q1' : (q === 2 || q === '2') ? 'Q2' : 'Mensual'
+  return `${mes} ${p.anio} · ${qLabel}`
+}
+
+function StateBadge({ estado }) {
+  const key = estado?.toLowerCase()
+  const badge = ESTADO_BADGE[key]
+  if (badge) {
+    return (
+      <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wide ${badge.cls}`}>
+        {badge.label}
+      </span>
+    )
+  }
+  return (
+    <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wide bg-surface-container text-on-surface-variant">
+      {estado || '—'}
+    </span>
+  )
+}
+
+function AccionesPeriodo({ p, navigate, userRol }) {
+  const id = p.id
+  const estado = p.estado?.toLowerCase()
+  const btn = 'text-[11px] font-bold text-primary border border-primary/30 rounded-md px-2.5 py-1 hover:bg-primary/5 transition-colors whitespace-nowrap'
+  const btnSecondary = 'text-[11px] font-bold text-on-surface-variant border border-outline-variant/30 rounded-md px-2.5 py-1 hover:bg-surface-container transition-colors whitespace-nowrap'
+
+  if (estado === 'abierto') return (
+    <div className="flex items-center gap-1.5">
+      <button onClick={() => navigate(`/nomina/periodos/${id}/novedades`)} className={btnSecondary}>Novedades</button>
+      <button onClick={() => navigate(`/nomina/periodos/${id}/resultado`)} className={btn}>Liquidar</button>
+    </div>
+  )
+  if (estado === 'liquidado') return (
+    <div className="flex items-center gap-1.5">
+      <button onClick={() => navigate(`/nomina/periodos/${id}/novedades`)} className={btnSecondary}>Novedades</button>
+      <button onClick={() => navigate(`/nomina/periodos/${id}/resultado`)} className={btn}>Resultado</button>
+      <button onClick={() => navigate(`/nomina/periodos/${id}/aprobar`)} className={btn}>Enviar aprob.</button>
+    </div>
+  )
+  if (estado === 'pendiente_aprobacion') return (
+    <div className="flex items-center gap-1.5">
+      <button onClick={() => navigate(`/nomina/periodos/${id}/resultado`)} className={btn}>Resultado</button>
+      {userRol === 'GERENTE' && (
+        <button onClick={() => navigate(`/nomina/periodos/${id}/aprobar`)} className={btn}>Aprobar</button>
+      )}
+    </div>
+  )
+  if (estado === 'aprobado') return (
+    <div className="flex items-center gap-1.5">
+      <button onClick={() => navigate(`/nomina/periodos/${id}/resultado`)} className={btn}>Resultado</button>
+      <button onClick={() => navigate(`/nomina/periodos/${id}/desprendibles`)} className={btn}>Desprendibles</button>
+    </div>
+  )
+  // pagado o cualquier otro
+  return (
+    <div className="flex items-center gap-1.5">
+      <button onClick={() => navigate(`/nomina/periodos/${id}/resultado`)} className={btn}>Resultado</button>
+    </div>
+  )
+}
 
 export default function PeriodosPage() {
   const navigate = useNavigate()
+  const { user } = useAuth()
+  const userRol = user?.rol || ''
+
   const [periodos, setPeriodos] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
@@ -72,38 +158,53 @@ export default function PeriodosPage() {
           <table className="w-full border-collapse">
             <thead>
               <tr className="bg-surface-container-low/50">
-                {['Periodo', 'Fechas', 'Empleados', 'Total Nómina', 'Estado', 'Acciones'].map((h, i) => (
-                  <th key={h} className={`px-8 py-5 text-[10px] font-black text-on-surface-variant uppercase tracking-widest border-b border-outline-variant/10 ${i === 5 ? 'text-right' : 'text-left'}`}>{h}</th>
+                {['Periodo', 'Fechas', 'Total Nómina', 'Estado', 'Acciones'].map((h, i) => (
+                  <th key={h} className={`px-6 py-5 text-[10px] font-black text-on-surface-variant uppercase tracking-widest border-b border-outline-variant/10 ${i === 4 ? 'text-right' : 'text-left'}`}>{h}</th>
                 ))}
               </tr>
             </thead>
             <tbody className="divide-y divide-outline-variant/5">
               {periodos.map((p, i) => (
                 <tr key={p.id} className={`group hover:bg-surface-container-low/30 transition-colors ${i % 2 === 1 ? 'bg-surface-container-low/10' : ''}`}>
-                  <td className="px-8 py-5">
-                    <p className="font-bold text-on-surface">{p.nombre || `${p.mes}/${p.anio}`}</p>
-                    <p className="text-[11px] text-on-surface-variant">{p.id}</p>
+
+                  {/* Periodo */}
+                  <td className="px-6 py-5">
+                    <p className="font-bold text-on-surface">{periodoLabel(p)}</p>
+                    <p className="text-[11px] text-on-surface-variant mt-0.5">
+                      {fmtShortDate(p.fecha_inicial)} — {fmtShortDate(p.fecha_final)}
+                    </p>
                   </td>
-                  <td className="px-8 py-5 text-xs text-on-surface-variant">{p.fecha_inicial} — {p.fecha_final}</td>
-                  <td className="px-8 py-5 text-sm font-semibold text-on-surface">{(p.empleados || 0).toLocaleString()}</td>
-                  <td className="px-8 py-5 text-sm font-bold text-primary-container">
-                    {p.total ? new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(p.total) : '—'}
+
+                  {/* Fechas completas */}
+                  <td className="px-6 py-5 text-xs text-on-surface-variant">
+                    <div>{p.fecha_inicial || '—'}</div>
+                    <div>{p.fecha_final || '—'}</div>
                   </td>
-                  <td className="px-8 py-5">
-                    <StatusOrb status={p.estado === 'ABIERTO' || p.estado === 'pending' ? 'pending' : 'active'} label={p.estado === 'ABIERTO' || p.estado === 'pending' ? 'En Proceso' : 'Cerrado'} />
+
+                  {/* Total nómina */}
+                  <td className="px-6 py-5">
+                    {(parseFloat(p.total_neto) === 0 && p.estado?.toLowerCase() === 'abierto')
+                      ? <span className="text-sm text-on-surface-variant italic">Sin liquidar</span>
+                      : parseFloat(p.total_neto) > 0
+                        ? <span className="text-sm font-bold text-primary-container">{fmtCOP(parseFloat(p.total_neto))}</span>
+                        : <span className="text-sm text-on-surface-variant">—</span>
+                    }
                   </td>
-                  <td className="px-8 py-5 text-right">
-                    <div className="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <button onClick={() => navigate(`/nomina/periodos/${p.id}/novedades`)} className="text-[11px] font-bold text-primary hover:underline">Novedades</button>
-                      <button onClick={() => navigate(`/nomina/periodos/${p.id}/resultado`)} className="text-[11px] font-bold text-primary hover:underline">Resultado</button>
-                      <button onClick={() => navigate(`/nomina/periodos/${p.id}/aprobar`)} className="text-[11px] font-bold text-primary hover:underline">Aprobar</button>
-                    </div>
+
+                  {/* Estado */}
+                  <td className="px-6 py-5">
+                    <StateBadge estado={p.estado} />
+                  </td>
+
+                  {/* Acciones */}
+                  <td className="px-6 py-5 text-right">
+                    <AccionesPeriodo p={p} navigate={navigate} userRol={userRol} />
                   </td>
                 </tr>
               ))}
               {periodos.length === 0 && (
                 <tr>
-                  <td colSpan={6} className="px-8 py-12 text-center text-sm text-on-surface-variant">No hay periodos registrados.</td>
+                  <td colSpan={5} className="px-8 py-12 text-center text-sm text-on-surface-variant">No hay periodos registrados.</td>
                 </tr>
               )}
             </tbody>

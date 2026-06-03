@@ -11,6 +11,7 @@ export const authService = {
   refresh:    (refreshToken)    => api.post('/api/auth/refresh', { refreshToken }).then(unwrap),
 
   getUsers:   ()                => api.get('/api/auth/users').then(unwrap),
+  crearUsuario: (body)          => api.post('/api/auth/users', body),
   createUser: (body)            => api.post('/api/auth/users', body).then(unwrap),
   updateUser: (id, body)        => api.put(`/api/auth/users/${id}`, body).then(unwrap),
   toggleUser: (id)              => api.put(`/api/auth/users/${id}/toggle`).then(unwrap),

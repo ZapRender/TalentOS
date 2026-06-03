@@ -23,18 +23,19 @@ const rolLabels = {
 }
 
 function initials(nombre) {
-  return nombre.split(' ').slice(0, 2).map((w) => w[0]).join('').toUpperCase()
+  return (nombre || '?').split(' ').slice(0, 2).map((w) => w[0]).join('').toUpperCase()
 }
 
 export default function UsuariosPage() {
   const [users, setUsers] = useState([])
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState('')
+  const [pageError, setPageError] = useState('')
   const [search, setSearch] = useState('')
   const [rolFilter, setRolFilter] = useState('todos')
   const [modalOpen, setModalOpen] = useState(false)
   const [editUser, setEditUser] = useState(null)
   const [saving, setSaving] = useState(false)
+  const [modalError, setModalError] = useState('')
   const [form, setForm] = useState({ nombre: '', apellidos: '', correo: '', rol: 'EMPLEADO', password: '' })
 
   const load = () => {
@@ -42,7 +43,7 @@ export default function UsuariosPage() {
     authService
       .getUsers()
       .then(setUsers)
-      .catch(() => setError('No se pudo cargar la lista de usuarios.'))
+      .catch(() => setPageError('No se pudo cargar la lista de usuarios.'))
       .finally(() => setLoading(false))
   }
 
@@ -50,46 +51,78 @@ export default function UsuariosPage() {
 
   const filtered = users.filter((u) => {
     const q = search.toLowerCase()
-    const matchSearch = !q || u.nombre.toLowerCase().includes(q) || u.correo.toLowerCase().includes(q) || u.rol.toLowerCase().includes(q)
+    const matchSearch = !q || u.nombre?.toLowerCase().includes(q) || (u.correo || u.email)?.toLowerCase().includes(q) || u.rol?.toLowerCase().includes(q)
     const matchRol = rolFilter === 'todos' || u.rol === rolFilter
     return matchSearch && matchRol
   })
 
   const openNew = () => {
     setEditUser(null)
-    setForm({ nombre: '', correo: '', rol: 'EMPLEADO', password: '' })
+    setForm({ nombre: '', apellidos: '', correo: '', rol: 'EMPLEADO', password: '' })
+    setModalError('')
     setModalOpen(true)
   }
 
   const openEdit = (u) => {
     setEditUser(u)
     setForm({ nombre: u.nombre, apellidos: u.apellidos || '', correo: u.correo || u.email || '', rol: u.rol, password: '' })
+    setModalError('')
     setModalOpen(true)
   }
 
+  const closeModal = () => {
+    setModalOpen(false)
+    setModalError('')
+  }
+
   const handleSave = async () => {
+    if (!form.nombre.trim() || !form.correo.trim()) {
+      setModalError('Nombre y correo son obligatorios.')
+      return
+    }
     setSaving(true)
+    setModalError('')
     try {
       if (editUser) {
-        await authService.updateUser(editUser.id, { nombre: form.nombre, apellidos: form.apellidos, email: form.correo, rol: form.rol })
+        await authService.updateUser(editUser.id, {
+          nombre: form.nombre,
+          apellidos: form.apellidos,
+          email: form.correo,
+          rol: form.rol,
+        })
       } else {
-        await authService.createUser({ nombre: form.nombre, apellidos: form.apellidos, email: form.correo, rol: form.rol })
+        await authService.createUser({
+          nombre: form.nombre,
+          apellidos: form.apellidos,
+          email: form.correo,
+          rol: form.rol,
+          password: form.password || undefined,
+        })
       }
-      setModalOpen(false)
+      closeModal()
       load()
-    } catch {
-      setError('Error al guardar el usuario.')
+    } catch (err) {
+      const status = err?.response?.status
+      if (status === 409) {
+        setModalError('Ya existe un usuario con ese correo.')
+      } else if (status === 400) {
+        const msg = err?.response?.data?.error || err?.response?.data?.message
+        setModalError(msg || 'Datos inválidos. Verifica los campos.')
+      } else {
+        setModalError('Error al guardar el usuario. Intenta de nuevo.')
+      }
     } finally {
       setSaving(false)
     }
   }
 
   const handleToggle = async (u) => {
+    setPageError('')
     try {
       await authService.toggleUser(u.id)
       load()
     } catch {
-      setError('Error al cambiar el estado del usuario.')
+      setPageError('Error al cambiar el estado del usuario.')
     }
   }
 
@@ -104,10 +137,14 @@ export default function UsuariosPage() {
         <Button onClick={openNew} icon="add">Nuevo Usuario</Button>
       </div>
 
-      {error && (
-        <div className="flex items-center gap-3 p-4 bg-error-container rounded-lg">
+      {/* Page-level error (toggle, load) — z-60 so stays above any backdrop */}
+      {pageError && (
+        <div className="flex items-center gap-3 p-4 bg-error-container rounded-lg" style={{ zIndex: 60, position: 'relative' }}>
           <span className="material-symbols-outlined text-error">error</span>
-          <p className="text-sm text-on-error-container font-medium">{error}</p>
+          <p className="text-sm text-on-error-container font-medium flex-1">{pageError}</p>
+          <button onClick={() => setPageError('')} className="text-error hover:opacity-70">
+            <span className="material-symbols-outlined text-lg">close</span>
+          </button>
         </div>
       )}
 
@@ -227,12 +264,29 @@ export default function UsuariosPage() {
         ))}
       </div>
 
-      {/* Modal */}
-      <Modal open={modalOpen} onClose={() => setModalOpen(false)} title={editUser ? 'Editar Usuario' : 'Nuevo Usuario'}>
+      {/* Modal — errores mostrados dentro del modal, nunca detrás */}
+      <Modal open={modalOpen} onClose={closeModal} title={editUser ? 'Editar Usuario' : 'Nuevo Usuario'}>
         <div className="space-y-5">
           <Input label="Nombres" value={form.nombre} onChange={(e) => setForm({ ...form, nombre: e.target.value })} placeholder="Ej. Lucía" />
           <Input label="Apellidos" value={form.apellidos} onChange={(e) => setForm({ ...form, apellidos: e.target.value })} placeholder="Ej. Martínez López" />
-          <Input label="Correo electrónico" type="email" value={form.correo} onChange={(e) => setForm({ ...form, correo: e.target.value })} placeholder="correo@empresa.com" />
+
+          {/* Email + error inline debajo */}
+          <div className="space-y-1">
+            <Input
+              label="Correo electrónico"
+              type="email"
+              value={form.correo}
+              onChange={(e) => { setForm({ ...form, correo: e.target.value }); setModalError('') }}
+              placeholder="correo@empresa.com"
+            />
+            {modalError && (
+              <p className="flex items-center gap-1.5 text-xs text-error font-medium pl-1">
+                <span className="material-symbols-outlined text-sm">error</span>
+                {modalError}
+              </p>
+            )}
+          </div>
+
           <div className="space-y-2">
             <label className="block text-[11px] font-bold uppercase tracking-widest text-on-surface-variant ml-1">Rol</label>
             <select
@@ -251,9 +305,9 @@ export default function UsuariosPage() {
             <Input label="Contraseña temporal" type="password" value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} placeholder="••••••••" />
           )}
           <div className="flex justify-end gap-3 pt-4">
-            <Button variant="secondary" onClick={() => setModalOpen(false)}>Cancelar</Button>
-            <Button variant="primary" onClick={handleSave} disabled={saving}>
-              {saving ? 'Guardando...' : editUser ? 'Guardar Cambios' : 'Crear Usuario'}
+            <Button variant="secondary" onClick={closeModal}>Cancelar</Button>
+            <Button variant="primary" onClick={handleSave} disabled={saving} loading={saving}>
+              {editUser ? 'Guardar Cambios' : 'Crear Usuario'}
             </Button>
           </div>
         </div>

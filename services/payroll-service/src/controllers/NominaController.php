@@ -171,6 +171,38 @@ class NominaController
         ], "{$enviados} desprendibles enviados");
     }
 
+    // ── Resultado ─────────────────────────────────────────────────────────────
+
+    public static function getResultado(array $params): void
+    {
+        $periodoId = (int)$params['id'];
+        $periodo   = PeriodoNomina::findById($periodoId);
+
+        if (!$periodo) {
+            self::error(404, 'Período no encontrado');
+        }
+
+        $liquidaciones = LiquidacionNomina::findByPeriodo($periodoId);
+
+        foreach ($liquidaciones as &$liq) {
+            $liq['conceptos'] = ConceptoLiquidado::findByLiquidacion((int)$liq['id']);
+        }
+        unset($liq);
+
+        $totalDevengado = array_sum(array_column($liquidaciones, 'total_devengado'));
+        $totalDeducido  = array_sum(array_column($liquidaciones, 'total_deducido'));
+        $totalNeto      = array_sum(array_column($liquidaciones, 'neto_pagar'));
+
+        self::ok([
+            'periodo'        => $periodo,
+            'liquidaciones'  => $liquidaciones,
+            'totalEmpleados' => count($liquidaciones),
+            'totalDevengado' => $totalDevengado,
+            'totalDeducido'  => $totalDeducido,
+            'totalNeto'      => $totalNeto,
+        ]);
+    }
+
     // ── Reportes ──────────────────────────────────────────────────────────────
 
     public static function exportarExcel(array $params): void

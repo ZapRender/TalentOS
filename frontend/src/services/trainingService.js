@@ -2,6 +2,8 @@ import api from './api'
 
 const unwrap = (r) => r.data.data ?? r.data
 
+export const crearInduccion = (data) => api.post('/api/training/induccion', data)
+
 export const trainingService = {
   induccion: {
     create:    (body)        => api.post('/api/training/induccion', body).then(unwrap),
