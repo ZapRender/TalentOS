@@ -11,7 +11,7 @@ export function setTokenGetter(fn) {
   _getToken = fn
 }
 
-api.interceptors.request.use((config) => {s
+api.interceptors.request.use((config) => {
   const token = _getToken?.()
   if (token) config.headers.Authorization = `Bearer ${token}`
   return config
