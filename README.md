@@ -77,7 +77,7 @@ docker-compose up
 ### Credenciales iniciales
 ```
 Email:    admin@talentos.com
-Password: Admin123!
+Password: WcV9Zs5EwU8xoEYnjXYL
 ```
 > Cambiar la contraseña después del primer login
 
